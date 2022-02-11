@@ -1,8 +1,6 @@
 {{- define "main" -}}
 {{ warnf "Single\t %s %s %t" . .File.Path .IsHome }}
 
-{{ if ne .File.Path "home\\index.md" }}
 {{ partial "widget_page.html" . }}
-{{ end }}
 
 {{- end -}}
