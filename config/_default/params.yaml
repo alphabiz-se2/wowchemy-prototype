@@ -4,10 +4,21 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 # Appearance
+appearance:
+  theme_day: alphabiz
+  theme_night: alphabiz
 
-theme: 1950s
-day_night: true
-font: ''
+footer:
+  text: 'yep'
+copyright:
+  notice: '© {year} wowchemy prototype. All Rights Reserved' # Footer text, e.g. '© {year} Me'
+#  license:
+#    enable: true
+#    allow_commercial: false
+#    allow_derivatives: false
+#    share_alike: true
+
+
 font_size: L
 
 # SEO
@@ -20,14 +31,16 @@ twitter: 'wowchemy'
 
 # Site header
 
-main_menu:
-  enable: true
-  align: r
-  show_logo: false
-  show_language: false
-  show_day_night: true
-  show_search: true
-  highlight_active_link: false
+header:
+  navbar:
+    enable: true
+    align: r
+    highlight_active_link: true
+    show_language: true
+    show_translations: true
+    show_day_night: true
+    show_search: true
+    show_logo: true
 
 # Localization
 
@@ -56,12 +69,12 @@ sharing_image: ''
 reading_time: true
 section_pager: true
 sharing: true
-copyright_license:
-  enable: false
-  allow_derivatives: false
-  share_alike: true
-  allow_commercial: false
-  notice: 'This work is licensed under {license}'
+#copyright_license:
+#  enable: true
+#  allow_derivatives: false
+#  share_alike: true
+#  allow_commercial: false
+#  notice: 'This work is licensed under {license}'
 plugins_js: []
 avatar:
   gravatar: false

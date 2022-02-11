@@ -30,8 +30,10 @@
   {{ $scr.Set "light" false }}
 {{ end }}
 
+
 {{/* Get name of site's Font Set. Precedence: Params.yaml > Inherit from Color Theme > Default (Minimal) */}}
 {{- $font_index := (site.Params.appearance.font | lower | replaceRE "\\s" "_") | default ((index site.Data.themes $theme_day_index).font | lower | replaceRE "\\s" "_") | default $theme_day_index -}}
+
 {{- $font_index := cond (isset site.Data.fonts $font_index) $font_index "minimal" -}}
 
 {{/* Get Font Size. */}}
@@ -61,12 +63,12 @@
 {{ end }}
 
 {{- $scr.Set "background" ($theme_day.background | default "rgb(255, 255, 255)") -}}
-{{- $scr.Set "home_section_odd" ($theme_day.home_section_odd | default "rgb(255, 255, 255)") -}}
-{{- $scr.Set "home_section_even" ($theme_day.home_section_even | default "rgb(247, 247, 247)") -}}
+{{- $scr.Set "home_section_odd" ($theme_day.home_section_odd | default "transparent") -}}
+{{- $scr.Set "home_section_even" ($theme_day.home_section_even | default "transparent") -}}
 
 {{- $scr.Set "dark_background" ($theme_night.background | default "hsla(231, 15%, 16%, 1)") -}}
-{{- $scr.Set "dark_home_section_odd" ($theme_night.home_section_odd | default "hsla(231, 15%, 18%, 1)") -}}
-{{- $scr.Set "dark_home_section_even" ($theme_night.home_section_even | default "hsla(231, 15%, 16%, 1)") -}}
+{{- $scr.Set "dark_home_section_odd" ($theme_night.home_section_odd | default "transparent") -}}
+{{- $scr.Set "dark_home_section_even" ($theme_night.home_section_even | default "transparent") -}}
 
 {{- $scr.Set "link" ($theme_day.link | default $theme_day.primary | default ($scr.Get "primary")) -}}
 {{- $scr.Set "link_hover" ($theme_day.link_hover | default $theme_day.primary | default ($scr.Get "primary")) -}}
@@ -85,3 +87,27 @@
 {{- $scr.Set "dark_menu_text" ($theme_night.menu_text | default "white") -}}
 {{- $scr.Set "dark_menu_text_active" ($theme_night.menu_text_active | default "rgba(255, 255, 255, 0.8)") -}}
 {{- $scr.Set "dark_menu_title" ($theme_night.menu_title | default "white") -}}
+
+{{ $defaultTheme := (index site.Data.themes $theme_day_index) }}
+
+{{ if $defaultTheme.menu_blur }}
+{{- $scr.Set "menu_blur" "blur(24px)saturate(1.8)brightness(1.1)" -}}
+{{ else }}
+{{- $scr.Set "menu_blur" "none" -}}
+{{ end }}
+
+{{ if $defaultTheme.menu_border }}
+{{- $scr.Set "menu_border" "0.3px solid rgba(0,0,0,0.1)" -}}
+{{- $scr.Set "dark_menu_border" "0.3px solid rgba(255,255,255,0.1)" -}}
+{{ else }}
+{{- $scr.Set "menu_border" "none" -}}
+{{- $scr.Set "dark_menu_border" "none" -}}
+{{ end }}
+
+{{ if $defaultTheme.menu_hover }}
+{{- $scr.Set "menu_hover" "rgba(0,0,0,0.1)" -}}
+{{- $scr.Set "dark_menu_hover" "rgba(255,255,255,0.1)" -}}
+{{ else }}
+{{- $scr.Set "menu_hover" "none" -}}
+{{- $scr.Set "dark_menu_hover" "none" -}}
+{{ end }}

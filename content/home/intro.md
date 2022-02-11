@@ -10,6 +10,8 @@ weight: 10
 
 author: admin
 
+active: false
+
 #design:
 #  background:
 #    color: '#090a0b'

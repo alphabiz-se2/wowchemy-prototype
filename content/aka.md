@@ -1,0 +1,5 @@
+---
+type: aka
+---
+
+ahah

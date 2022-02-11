@@ -29,12 +29,12 @@
     {{ . | markdownify | emojify }}
   </p>
   {{ end }}
-
+  
   {{/* Display copyright license. */}}
   {{ partial "site_footer_license" . }}
 
   <p class="powered-by">
-    {{ $is_sponsor := site.Params.i_am_a_sponsor | default false }}
+    {{ $is_sponsor := site.Params.i_am_a_sponsor | default true }}
     {{ $hide_published_with_footer := site.Params.power_ups.hide_published_with | default true }}
     {{ if not (and $is_sponsor $hide_published_with_footer) }}
       {{ $default := "Published with {wowchemy} — the free, {repo_link}open source{/repo_link} website builder that empowers creators." }}

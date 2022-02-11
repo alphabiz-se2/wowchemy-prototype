@@ -1,0 +1,29 @@
+# Theme metadata
+name = "alphabiz"
+
+font = 'minimal'
+menu_blur = true
+menu_border = true
+menu_hover = true
+
+[light]
+  # Primary
+  primary = "#dca95a"
+  # Menu
+  menu_primary = "#ffffffd2"
+  menu_text = "#242424"
+  menu_text_active = "#dca95a"
+  menu_title = "#242424"
+  # Backgrounds
+  background = "#ffffff"
+
+[dark]
+  # Primary
+  primary = "#ecbe76"
+  # Menu
+  menu_primary = "#242424d2"
+  menu_text = "#fff"
+  menu_text_active = "#ecbe76"
+  menu_title = "#fff"
+  # Backgrounds
+  background = "#242424"

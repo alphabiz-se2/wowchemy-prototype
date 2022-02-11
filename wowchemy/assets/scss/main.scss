@@ -30,11 +30,17 @@ $sta-menu-primary: {{ $scr.Get "menu_primary" }};
 $sta-menu-text: {{ $scr.Get "menu_text" }};
 $sta-menu-text-active: {{ $scr.Get "menu_text_active" }};
 $sta-menu-title: {{ $scr.Get "menu_title" }};
+$sta-menu-border: {{ $scr.Get "menu_border" }};
+$sta-menu-hover: {{ $scr.Get "menu_hover" }};
 
 $sta-dark-menu-primary: {{ $scr.Get "dark_menu_primary" }};
 $sta-dark-menu-text: {{ $scr.Get "dark_menu_text" }};
 $sta-dark-menu-text-active: {{ $scr.Get "dark_menu_text_active" }};
 $sta-dark-menu-title: {{ $scr.Get "dark_menu_title" }};
+$sta-dark-menu-border: {{ $scr.Get "dark_menu_border" }};
+$sta-dark-menu-hover: {{ $scr.Get "dark_menu_hover" }};
+
+$sta-menu-blur: {{ $scr.Get "menu_blur" }};
 
 $sta-background: {{ $scr.Get "background" }};
 $sta-dark-background: {{ $scr.Get "dark_background" }};
