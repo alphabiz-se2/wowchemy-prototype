@@ -96,6 +96,14 @@
         color: $sta-menu-text-active !important;
       }
     }
+
+    &:not(.nav-icons) {
+      .nav-item {
+        display: flex;
+        justify-content: center;
+        min-width: 72px;
+      }
+    }
   }
 
   .dropdown-menu {
@@ -161,6 +169,13 @@
   .i18n-dropdown .nav-link::after {
     // Remove dropdown arrow on small devices (when language name isn't displayed).
     content: none;
+  }
+
+  .navbar-nav:not(.nav-icons) {
+    .nav-item {
+      justify-content: flex-start !important;
+      min-width: unset !important;
+    }
   }
 }
 
@@ -258,11 +273,15 @@
   #navbar-main .main-menu-item .nav-item .nav-link {
     padding: 5px 15px !important;
   }
+
+  .i18n-dropdown {
+    padding: 0 !important;
+  }
 }
 
 ul.nav-icons {
   list-style-type: none;
-  font-size: 18px;
+  font-size: 16px;
   padding: 0.5rem 0 0.5rem 0;
   margin: 0;
 }
@@ -271,7 +290,7 @@ ul.nav-icons li {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px !important;
+  width: 40px;
   height: 40px !important;
   border-radius: 20px;
 }
@@ -287,6 +306,12 @@ ul.nav-icons li.nav-item a.nav-link {
 .dark .dropdown-menu {
   background-color: $sta-dark-menu-primary !important;
   color: $sta-dark-menu-text !important;
+}
+
+.i18n-dropdown {
+  padding: 0 16px;
+  min-width: 40px;
+  width: fit-content !important;
 }
 
 .dropdown-item {

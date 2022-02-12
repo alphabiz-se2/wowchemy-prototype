@@ -7,9 +7,9 @@
 }
 
 .hero-title {
-  font-size: 2.7rem;
+  font-size: 2.2rem;
   margin-top: 0;
-  line-height: 1;
+  line-height: 1.25;
 }
 
 .hero-lead {
@@ -65,7 +65,7 @@ a.hero-cta-alt {
 a.hero-cta-alt:active,
 a.hero-cta-alt:focus,
 a.hero-cta-alt:hover {
-  transform: scale(1.1);
+  opacity: 0.8;
 }
 
 .wg-hero .btn-lg {

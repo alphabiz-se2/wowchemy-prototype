@@ -8,6 +8,10 @@ main:
     url: /
     weight: 10
 
+  - name: Post
+    url: post/
+    weight: 20
+
   - name: About
     url: about/
-    weight: 20
+    weight: 100

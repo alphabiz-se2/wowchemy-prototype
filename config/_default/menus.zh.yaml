@@ -1,0 +1,12 @@
+main:
+  - name: 主页
+    url: /
+    weight: 10
+
+  - name: 博客
+    url: post/
+    weight: 20
+
+  - name: 关于
+    url: about/
+    weight: 100

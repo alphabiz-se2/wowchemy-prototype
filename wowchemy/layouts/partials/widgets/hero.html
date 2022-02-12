@@ -1,12 +1,15 @@
 {{ $ := .root }}
 {{ $page := .page }}
 {{ $bg := $page.Params.design.background }}
+{{ $style := $page.Params.hero_style }}
 
 {{ if $page.Params.hero_media }}
-<div class="row">
+<div
+  class="row"
+  style="align-items: center"
+>
   <div class="col-12 col-md-6 text-center text-md-left">
 {{ end }}
-
     {{ with $page.Title }}
       <h1 class="hero-title">{{ . | markdownify }}</h1>
     {{ end }}
@@ -30,8 +33,10 @@
       {{ else if in (slice "http" "https") $scheme }}
         {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
       {{ end }}
-    <p class="cta-btns">
-      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="btn {{if $bg.text_color_light}}btn-light{{else}}btn-primary{{end}} btn-lg mb-md-1">{{ if $page.Params.cta.icon }}<i class="{{ $pack }} {{ $pack_prefix }}-{{ $page.Params.cta.icon }} pr-1" aria-hidden="true"></i>{{end}}{{ $page.Params.cta.label | markdownify | emojify | safeHTML }}</a>
+    <div class="cta-btns row">
+      <div class="col-md-12">
+        <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="btn {{if $bg.text_color_light}}btn-light{{else}}btn-primary{{end}} btn-lg mb-md-1">{{ if $page.Params.cta.icon }}<i class="{{ $pack }} {{ $pack_prefix }}-{{ $page.Params.cta.icon }} pr-1" aria-hidden="true"></i>{{end}}{{ $page.Params.cta.label | markdownify | emojify | safeHTML }}</a>
+      </div>
 
       {{/* Alternative Call-to-action link */}}
       {{ if $page.Params.cta_alt.url }}
@@ -43,9 +48,11 @@
         {{ else if in (slice "http" "https") $scheme }}
           {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
         {{ end }}
-      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hero-cta-alt btn-lg pl-md-4">{{ $page.Params.cta_alt.label | markdownify | emojify | safeHTML }} <i class="fas fa-angle-right"></i></a>
+      <div class="col-md-12">
+        <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hero-cta-alt btn-sm">{{ $page.Params.cta_alt.label | markdownify | emojify | safeHTML }} <i class="fas fa-angle-right"></i></a>
+      </div>
       {{ end }}
-    </p>
+    </div>
     {{ end }}
 
     {{/* Call-to-action note */}}
@@ -85,7 +92,16 @@
         {{ end }}
         {{ $img_src_set = delimit $img_src_set "," }}
 
-        <img src="{{ $legacy_img.RelPermalink }}" srcset="{{ $img_src_set }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $page.Title }}">
+        <img
+          src="{{ $legacy_img.RelPermalink }}"
+          srcset="{{ $img_src_set }}"
+          width="{{ $image.Width }}"
+          height="{{ $image.Height }}"
+          alt="{{ $page.Title }}"
+          class="
+          {{ if $style.media_rounded }}{{ "rounded-lg" }}{{ end }}
+          "
+        >
       {{ end }}
     {{ end }}
   </div>

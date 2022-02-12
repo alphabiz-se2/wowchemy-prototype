@@ -3,34 +3,16 @@
 # Documentation: https://wowchemy.com/docs/
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
+
+########################################################################################################################
+
 # Appearance
 appearance:
   theme_day: alphabiz
   theme_night: alphabiz
-
-footer:
-  text: 'yep'
-copyright:
-  notice: '© {year} wowchemy prototype. All Rights Reserved' # Footer text, e.g. '© {year} Me'
-#  license:
-#    enable: true
-#    allow_commercial: false
-#    allow_derivatives: false
-#    share_alike: true
-
-
 font_size: L
 
-# SEO
-
-site_type: Person
-local_business_type: ''
-org_name: ''
-description: 'A highly-customizable Hugo blog theme powered by Wowchemy website builder.'
-twitter: 'wowchemy'
-
 # Site header
-
 header:
   navbar:
     enable: true
@@ -42,9 +24,20 @@ header:
     show_search: true
     show_logo: true
 
-# Localization
 
-date_format: 'Jan 2, 2006'
+########################################################################################################################
+
+# SEO
+
+site_type: Person
+local_business_type: ''
+org_name: ''
+description: 'A highly-customizable Hugo blog theme powered by Wowchemy website builder.'
+twitter: 'wowchemy'
+
+
+# Localization
+date_format: '2006, Jan 2'
 time_format: '3:04 PM'
 
 # Site features
