@@ -16,6 +16,8 @@ Logo: `site/assets/media/logo.png`
 
 Themes: `site/data/themes/<theme-name>.toml`
 
+I18n: `site/i18n/<langCode>.yaml`
+
 
 # 1. General
 
@@ -124,6 +126,14 @@ copyright:
 
 # 4. I18n
 
+## Config
+
+Set your default language
+> config.yaml
+```yaml
+defaultContentLanguage: en
+```
+
 ## Languages
 ```yaml
 en:
@@ -136,26 +146,20 @@ zh:
   contentDir: content/zh
 ```
 
-1. Move the files in `content` to its subfolder `content/en`,
+1. Config localization props in config into sub map (eg.`title`)
+
+2. Move the files in `content` to its subfolder `content/en`,
 and supplement the translated content in your second language folder `content/zh`
 
-2. Duplicate `params.yaml` to `params.xx.yaml`
-   
-3. Duplicate `menus.yaml` to `menus.xx.yaml`
-   
-> `xx` means your languageCode eg.`config.en.yaml`
+## I18n
 
-## Config
-
-set your default language
-> config.yaml
-```yaml
-defaultContentLanguage: en
-```
+Create i18n file `<langCode>.yaml` (eg.`site/i18n/en.yaml`)
 
 ## Params
 
-config your localization props in `params` like footer
+Duplicate `params.yaml` to `params.<langCode>.yaml`
+
+Config your localization props in `params` like footer
 
 > params.en.yaml
 ```yaml
@@ -186,11 +190,55 @@ appearance:
 font_size: L
 ```
 
-general params (eg.`appearance`) in `params.yaml` will be extended by the localization params file
+General params (eg.`appearance`) in `params.yaml` will be extended by the localization params file
 (eg.`params.zh.yaml`)
 
 
 ## Menus
+
+#### Option 1
+
+You can set i18n field id as menuItem name and config your i18n file 
+
+> menus.yaml
+```yaml
+main:
+  - name: menu_item_home
+    url: /
+    weight: 10
+
+  - name: menu_item_post
+    url: post/
+    weight: 20
+
+  - name: menu_item_about
+    url: about/
+    weight: 100
+```
+
+> i18n/en.yaml
+```yaml
+- id: menu_item_home
+  translation: Home
+- id: menu_item_post
+  translation: Post
+- id: menu_item_about
+  translation: About
+```
+
+> i18n/zh.yaml
+```yaml
+- id: menu_item_home
+  translation: 主页
+- id: menu_item_post
+  translation: 博客
+- id: menu_item_about
+  translation: 关于
+```
+
+#### Option 2
+
+Duplicate `menus.yaml` to `menus.xx.yaml` if you want to config a menu with different structure
 
 > menus.en.yaml
 ```yaml
@@ -206,6 +254,11 @@ main:
   - name: About
     url: about/
     weight: 100
+
+  - name: Twitter
+    url: twitter/
+    weight: 110
+
 ```
 
 > menus.zh.yaml
@@ -223,18 +276,6 @@ main:
     url: about/
     weight: 100
 ```
-
-## Params
-> params.en.yaml
-```yaml
-
-```
-
-> params.zh.yaml
-```yaml
-
-```
-
 
 # Partials::widget_page
 ```yaml

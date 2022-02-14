@@ -68,13 +68,13 @@
           {{ if .HasChildren }}
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-              {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+              {{- .Pre -}}<span>{{ i18n .Name | default .Name | safeHTML }}</span>{{- .Post -}}
               <span class="caret"></span>
             </a>
             <div class="dropdown-menu">
               {{ range .Children }}
                 <a class="dropdown-item" href="{{ .URL | relLangURL }}"{{ if $.IsHome }} data-target="{{ .URL }}"{{ end }}>
-                  {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+                  {{- .Pre -}}<span>{{ i18n .Name | default .Name | safeHTML }}</span>{{- .Post -}}
                 </a>
               {{ end }}
             </div>
@@ -116,7 +116,7 @@
 
           <li class="nav-item">
             <a class="nav-link {{if and $highlight_active_link $is_link_in_current_path }} active{{end}}" href="{{.URL | relLangURL}}"{{ if and $is_widget_page $is_same_page }} data-target="{{$hash}}"{{ end }}{{ ($.Scratch.Get "target") | safeHTMLAttr }}>
-              {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+              {{- .Pre -}}<span>{{ i18n .Name | default .Name | safeHTML }}</span>{{- .Post -}}
             </a>
           </li>
 
@@ -140,7 +140,7 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{{ .URL | relLangURL }}"{{ if $.IsHome }} data-target="{{ .URL }}"{{ end }}{{ ($.Scratch.Get "target") | safeHTMLAttr }}>
-              {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+              {{- .Pre -}}<span>{{ i18n .Name | default .Name | safeHTML }}</span>{{- .Post -}}
             </a>
           </li>
 

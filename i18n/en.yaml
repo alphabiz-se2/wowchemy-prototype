@@ -1,0 +1,6 @@
+- id: menu_item_home
+  translation: Home
+- id: menu_item_post
+  translation: Post
+- id: menu_item_about
+  translation: About
