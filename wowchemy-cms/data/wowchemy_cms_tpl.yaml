@@ -39,20 +39,19 @@ collections:
       - {label: "Lenguaje", name: "language", widget: "select", options: ["en", "es"]}
       - {label: "Titulo", name: "title", widget: "string"}
       - {label: "Contenido", name: "body", widget: "markdown"}
-#  - name: language
-#    label: Language
-#    files:
-#      - name: en
-#        file: 'i18n/en.yaml'
-#        label: English
-#        fields:
-#          - {name: "home", widget: "string", label: "Home" }
-#      - name: zh
-#        file: 'i18n/zh.yaml'
-#        label: 简体中文
-#        fields:
-#          - {name: "home", widget: "string", label: "主页" }
-#          - {label: "Title", name: "title", widget: "string", required: false}
+
+
+  - name: language
+    label: "Language"
+    files:
+      - name: zh
+        label: "简体中文"
+        file: "i18n/zh.yaml"
+        identifier_field: "{{filename}}"
+        fields:
+        - {name: "home", widget: "string", label: "主页" }
+        - {label: "Title", name: "title", widget: "string", required: false}
+
 
   - name: home
     label: Home
