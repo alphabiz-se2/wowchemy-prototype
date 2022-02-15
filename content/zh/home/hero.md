@@ -1,5 +1,6 @@
 ---
 language: zh
+filename: hero
 
 widget: hero
 headless: true

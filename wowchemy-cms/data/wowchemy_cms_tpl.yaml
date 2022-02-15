@@ -19,16 +19,16 @@ collections:
     # [Dashboard]
     label: Tab Test # title
     label_singular: 'TAB' # button label
-    description: The description is a great place for tone setting, high level information, and editing
+    description: 'The description is a great place for tone setting, high level information, and editing'
     create: true # creatable
     delete: true # deletable
     # [Folders Env]
     media_folder: '/assets/media'
     public_folder: ''
     # [Content]
-    folder: 'content'
-    slug: '{{fields.slug}}'
-    path: '{{fields.language}}/home/{{slug}}'
+    folder: 'content/'
+    slug: 'home/{{fields.filename}}'
+    path: '{{fields.language}}/{{slug}}'
     summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
     filter: { field: "language", value: "en" }
     identifier_field: "slug"

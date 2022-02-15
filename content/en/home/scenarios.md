@@ -1,6 +1,6 @@
 ---
 language: en
-slug: scenarios
+filename: scenarios
 
 widget: ab.features
 weight: 20
