@@ -27,8 +27,8 @@ collections:
     public_folder: ''
     # [Content]
     folder: 'content'
-    slug: 'hero'
-    path: '{{fields.language}}/home/{{slug}}/index'
+    slug: '{{fields.slug}}'
+    path: '{{fields.language}}/home/{{slug}}'
     summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
     filter: { field: "language", value: "en" }
     identifier_field: "widget_id"

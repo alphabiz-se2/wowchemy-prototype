@@ -1,4 +1,7 @@
 ---
+language: en
+slug: scenarios
+
 widget: ab.features
 weight: 20
 active: true

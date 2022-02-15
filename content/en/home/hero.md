@@ -1,5 +1,6 @@
 ---
 language: en
+slug: hero
 
 widget: hero
 headless: true
