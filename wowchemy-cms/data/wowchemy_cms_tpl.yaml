@@ -11,15 +11,37 @@ i18n:
   # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
   # single_file - persists a single file in `<folder>/<slug>.<extension>`
   structure: multiple_folders
-
-  # Required - a list of locales to show in the editor UI
   locales: [en, zh]
-
-  # Optional, defaults to the first item in locales.
-  # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 
 collections:
+  - name: tab-test
+    # [Dashboard]
+    label: Tab Test # title
+    label_singular: 'TAB' # button label
+    description: The description is a great place for tone setting, high level information, and editing
+    create: true # creatable
+    delete: true # deletable
+    # [Folders Env]
+    media_folder: '/assets/media'
+    public_folder: ''
+    # [Content]
+    folder: 'content'
+    slug: 'hero'
+    path: '{{fields.language}}/home/{{slug}}/index'
+    summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
+    filter: { field: "language", value: "en" }
+    identifier_field: "widget_id"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+#     [Filter]
+#    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
+#    view_filters:
+#      - {label: "zh", field: "language", pattern: "zh"}
+
+
   - name: home
     label: Home
     folder: 'content/en/home'
@@ -186,7 +208,6 @@ collections:
             widget: "boolean"
             default: false
           - {label: "Body", name: "body", widget: "markdown"}
-
 
 #  - name: authors
 #    label: Authors

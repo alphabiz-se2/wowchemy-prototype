@@ -1,4 +1,6 @@
 ---
+language: en
+
 widget: hero
 headless: true
 weight: 10
