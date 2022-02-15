@@ -31,10 +31,10 @@ collections:
     path: '{{fields.language}}/home/{{slug}}'
     summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
     filter: { field: "language", value: "en" }
-    identifier_field: "widget_id"
+    identifier_field: "slug"
     fields:
-      - label: "Title"
-        name: "title"
+      - label: "Slug"
+        name: "slug"
         widget: "string"
 #     [Filter]
 #    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
