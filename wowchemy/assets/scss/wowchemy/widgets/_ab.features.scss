@@ -1,0 +1,84 @@
+.ab-features {
+  text-align: center;
+
+  .ab-title {
+    font-size: 1.7rem;
+    font-weight: bolder;
+    line-height: 1;
+  }
+
+  .ab-title-line {
+    width: 3rem;
+    height: 0.3rem;
+    border-radius: 0.15rem;
+    background-color: $sta-primary;
+    margin: 0.5rem auto 0;
+  }
+
+  .ab-subtitle {
+    max-width: 720px;
+    width: 90%;
+    margin: 16px auto 0;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+
+  .ab-content {
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 90%;
+    text-indent: 2rem;
+    text-align: start;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  .ab-feature {
+    padding: 0;
+    .ab-feature-card {
+      max-width: calc( 100vw - 32px );
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .ab-feature-icon {
+      display: block;
+      width: 100%;
+      color: $sta-primary;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 24px;
+      .ab-img {
+        margin: 0 auto;
+      }
+    }
+
+    .ab-feature-name {
+      color: $sta-primary;
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .ab-feature-desc {
+      max-width: 60vw;
+      margin: 16px auto 0;
+      font-size: 0.7rem;
+      font-weight: 400;
+      line-height: 1.25;
+      opacity: 0.5;
+    }
+  }
+}
+.ab-feature-card.ab-feature-hover {
+  .ab-feature-icon, .ab-feature-name {
+    transition: 180ms ease-out;
+    filter: saturate(0) brightness(0.5);
+  }
+  &:hover .ab-feature-icon, &:hover .ab-feature-name {
+    filter: saturate(1) brightness(1);
+  }
+}
+

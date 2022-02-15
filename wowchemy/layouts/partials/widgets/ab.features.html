@@ -1,0 +1,42 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<div class="row ab-features">
+  <div class="col-md-12 mb-3">
+    <div class="ab-title">{{ i18n $page.Title | default $page.Title | markdownify | emojify }}</div>
+    <div class="ab-title-line"><div></div></div>
+    {{ if $page.Params.subtitle }}<p class="ab-subtitle">{{ i18n $page.Params.subtitle | default $page.Params.subtitle | markdownify | emojify }}</p>{{ end }}
+  </div>
+
+  {{ with $page.Content }}
+  <div class="col-md-12">
+    <div class="ab-content">{{ . }}</div>
+  </div>
+  {{ end }}
+
+  {{ range $page.Params.features }}
+  {{ $pack := or .icon_pack "fas" }}
+  {{ $pack_prefix := $pack }}
+  {{ if in (slice "fab" "fas" "far" "fal") $pack }}
+  {{ $pack_prefix = "fa" }}
+  {{ end }}
+  <div class="ab-feature col-12 col-md-3">
+    <div class="ab-feature-card {{ if $page.Params.featureHover }}{{ "ab-feature-hover" }}{{ end }}">
+      {{ with .icon }}
+      <div class="ab-feature-icon">
+        {{- if eq $pack "emoji" -}}
+        {{- . | emojify -}}
+        {{- else if eq $pack "custom" -}}
+        {{- $img_icon := resources.Get (printf "media/icons/%s" .) -}}
+        {{- if $img_icon -}}<img src="{{ $img_icon.RelPermalink }}" alt="{{.}}" class="ab-img">{{- end -}}
+        {{- else -}}
+        <i class="{{ $pack }} {{ $pack_prefix }}-{{ . }}"></i>
+        {{- end -}}
+      </div>
+      {{ end }}
+      <div class="ab-feature-name">{{ i18n .name | default .name | markdownify | emojify }}</div>
+      <p class="ab-feature-desc">{{ i18n .description | default .description | markdownify | emojify }}</p>
+    </div>
+  </div>
+  {{ end }}
+</div>

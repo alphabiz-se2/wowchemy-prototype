@@ -12,6 +12,8 @@ weight: 20
 title:
 subtitle:
 
+active: false
+
 content:
   # Automatically link email and phone or display as text?
   autolink: true

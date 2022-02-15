@@ -22,12 +22,12 @@ i18n:
 collections:
   - name: home
     label: Home
-    folder: 'content/home'
+    folder: 'content/en/home'
     path: '{{slug}}'
     # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
     media_folder: '/assets/media'
     public_folder: ''
-    summary: "[{{filename}}] {{title}}"
+    summary: '[{{filename}}.{{extension}}]'
     identifier_field: "widget_id"
     create: true
     fields:
