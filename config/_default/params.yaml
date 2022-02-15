@@ -24,6 +24,16 @@ header:
     show_search: true
     show_logo: true
 
+# contact footer
+contact:
+  - type: email
+    val: 'aws@alpha.biz'
+
+  - type: github
+    val: 'https://github.com/'
+
+  - type: twitter
+    val: 'https://twitter.com/home'
 
 ########################################################################################################################
 

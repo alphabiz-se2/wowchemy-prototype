@@ -1,2 +1,25 @@
 {{/* Override this file to add a custom footer to every page. */}}
 {{/* This partial is included in `layouts/partials/site_footer.html`. */}}
+
+{{ $contact := site.Params.contact }}
+{{ if $contact }}
+<div class="footer-contact">
+  {{ range $contact }}
+  <div>
+    {{ if eq .type "email" }}
+    <a href="mailto:{{ .val }}">
+      <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+    </a>
+    {{ else if eq .type "twitter" }}
+    <a href="{{.val|safeURL}}" target="_blank">
+      <i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
+    </a>
+    {{ else if eq .type "github" }}
+    <a href="{{.val|safeURL}}" target="_blank">
+      <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}

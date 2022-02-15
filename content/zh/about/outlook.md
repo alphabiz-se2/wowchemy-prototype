@@ -3,7 +3,7 @@ widget: ab.features
 headless: true
 weight: 20
 
-title: 它将颠覆性地实现以下价值
+title: 前景
 
 featureHover: true
 

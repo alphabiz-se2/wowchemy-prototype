@@ -19,6 +19,7 @@
   top: 100%;
   left: 0;
   z-index: $zindex-dropdown;
+  overflow: hidden;
   display: none; // none by default, but block on "open" of the menu
   float: left;
   min-width: $dropdown-min-width;
@@ -30,9 +31,13 @@
   list-style: none;
   background-color: $dropdown-bg;
   background-clip: padding-box;
-  border: $dropdown-border-width solid $dropdown-border-color;
+  border: $sta-menu-border;
   @include border-radius($dropdown-border-radius);
   @include box-shadow($dropdown-box-shadow);
+}
+
+.dark .dropdown-menu {
+  border: $sta-dark-menu-border;
 }
 
 @each $breakpoint in map-keys($grid-breakpoints) {

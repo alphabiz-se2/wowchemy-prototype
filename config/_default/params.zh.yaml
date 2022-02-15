@@ -1,8 +1,5 @@
-footer:
-  text: '一段页脚静态文本'
 copyright:
-  notice: '© {year} wowchemy prototype. 版权所有'
-
+  notice: '© {year} wowchemy prototype.'
 
 # Localization
 locale:
