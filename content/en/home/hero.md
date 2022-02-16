@@ -19,8 +19,8 @@ cta_alt:
   label: View Documentation
   url: 'https://github.com/tanshuai/alphabiz/wiki'
   
-#cta_note: 
-#  label: 'cta_note'
+cta_note: 
+  label: 'cta_note'
   
 hero_style:
   media_rounded: true
