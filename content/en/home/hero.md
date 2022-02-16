@@ -1,10 +1,9 @@
 ---
 language: en
 slug: hero
-
 widget: hero
-headless: true
 weight: 10
+active: true
 
 title: '**Redefining Network Ecology of Data Transmission Based on Blockchain**'
 

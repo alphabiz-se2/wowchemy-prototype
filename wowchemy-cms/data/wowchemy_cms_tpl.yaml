@@ -14,7 +14,79 @@ i18n:
   locales: [en, zh]
   default_locale: en
 
+
+common:
+  base: &base-collection
+    create: true
+    delete: true
+    # [Folders Env]
+    media_folder: '/assets/media'
+    public_folder: ''
+    slug: '{{fields.slug}}'
+    path: '{{slug}}'
+    identifier_field: "slug"
+    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+    sortable_fields: ["weight"]
+    fields:
+      - label: "ID"
+        name: "slug"
+        required: true
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
+        hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
+      - label: "启用组件"
+        name: "active"
+        widget: "boolean"
+        default: true
+      - label: "序列"
+        name: "weight"
+        widget: "number"
+        default: 10
+        value_type: "int"
+        min: 0
+        max: 1001
+        step: 10
+        hint: "组件显示的顺序，数值低的组件将排列在前面"
+      - label: "组件类型"
+        name: "widget"
+        widget: "select"
+        default: "blink"
+        options: ["blink", "hero", "ab.features"]
+        hint: "该字段对应 wowchemy 的模板"
+
+      - label: "标题"
+        name: "title"
+        required: true
+      - label: "副标题"
+        name: "subtitle"
+      - label: "内容"
+        name: "body"
+        widget: "markdown"
+        required: false
+
+      #########################
+      #   ab.features fields
+      #########################
+      - label: "组件参数(ab.features)"
+        label_singular: "特性"
+        name: "features"
+        widget: "list"
+        hint: "ab.features组件的参数"
+        fields:
+          - {label: "名称", name: "name", widget: "string"}
+          - {label: "描述", name: "description", widget: "string"}
+
 collections:
+  - <<: *base-collection
+    name: home-en
+    label: 主页-英文
+    folder: 'content/en/home'
+
+  - <<: *base-collection
+    name: home-zh
+    label: 主页-中文
+    folder: 'content/zh/home'
+
+
   - name: tab-test
     # [Dashboard]
     label: Tab Test # title
@@ -26,11 +98,11 @@ collections:
     media_folder: '/assets/media'
     public_folder: ''
     # [Content]
-    folder: 'content'
+    folder: 'content/en/about'
     slug: '{{fields.slug}}'
-    path: '{{fields.language}}/home/{{slug}}'
+    path: '{{slug}}'
     identifier_field: "slug"
-    filter: { field: 'language', values: ['en', 'zh'] }
+    filter: { field: 'language', value: 'en' }
     summary: '[{{fields.language}}] {{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     fields:
       - label: "Slug"
@@ -39,7 +111,7 @@ collections:
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Cannot contain spaces, capital letters, or special characters. You may separate words with dashes and numbers are allowed."]
         hint: "This will be used in the URL."
 
-  #     [Filter]
+#     [Filter]
 #    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
 #    view_filters:
 #      - {label: "zh", field: "language", pattern: "zh"}

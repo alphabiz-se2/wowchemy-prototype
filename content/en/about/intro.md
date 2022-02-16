@@ -1,7 +1,9 @@
 ---
+language: en
+slug: intro
 widget: ab.features
-headless: true
 weight: 10
+active: true
 
 title: Intro
 

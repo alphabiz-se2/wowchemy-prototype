@@ -1,6 +1,9 @@
 ---
+language: en
+slug: credits
 widget: ab.features
 weight: 30
+active: true
 
 title: AB Credits
 subtitle: "AlphaBiz's Credit (Abbreviation: AB), Symbol: α. AB is the credit of AlphaBiz for the exchange and circulation of the digital content value, it is also a resource digital asset."

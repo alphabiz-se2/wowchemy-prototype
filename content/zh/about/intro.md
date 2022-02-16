@@ -1,7 +1,9 @@
 ---
+language: zh
+slug: intro
 widget: ab.features
-headless: true
 weight: 10
+active: true
 
 title: 介绍
 

@@ -1,10 +1,9 @@
 ---
 language: zh
 slug: hero
-
 widget: hero
-headless: true
 weight: 10
+active: true
 
 
 title: '**基于区块链重新定义数据传输网络生态**'

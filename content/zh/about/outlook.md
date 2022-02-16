@@ -1,7 +1,9 @@
 ---
+language: zh
+slug: outlook
 widget: ab.features
-headless: true
 weight: 20
+active: true
 
 title: 前景
 
