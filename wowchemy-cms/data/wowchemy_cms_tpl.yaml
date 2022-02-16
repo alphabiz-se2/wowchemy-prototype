@@ -30,7 +30,7 @@ collections:
     slug: '{{fields.slug}}'
     path: '{{fields.language}}/home/{{slug}}'
     identifier_field: "slug"
-    filter: { field: 'language', value: 'en' }
+    filter: { field: 'language', values: ['en', 'zh'] }
     summary: '[{{fields.language}}] {{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     fields:
       - label: "Slug"
@@ -38,7 +38,6 @@ collections:
         required: true
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Cannot contain spaces, capital letters, or special characters. You may separate words with dashes and numbers are allowed."]
         hint: "This will be used in the URL."
-
 
   #     [Filter]
 #    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
