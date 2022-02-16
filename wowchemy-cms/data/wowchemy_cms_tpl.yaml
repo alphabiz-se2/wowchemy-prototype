@@ -161,7 +161,7 @@ common:
     slug: '{{fields.slug}}'
     path: '{{slug}}/index'
     identifier_field: "slug"
-    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+    summary: '[{{slug}}] {{fields.title}}'
     filter: {field: "cms_exclude"}
     fields:  # The fields each document in this collection have
       - label: "ID"
@@ -175,7 +175,7 @@ common:
       - {label: "发布时间", name: "date", widget: "datetime"}
       - {label: "概述", name: "summary", widget: "markdown", required: false}
       - {label: "作为草稿", name: "draft", widget: "boolean", required: false, default: false}
-      - {label: "特性", name: "featured", widget: "boolean", required: false, default: false}
+      - {label: "作为特点", name: "featured", widget: "boolean", required: false, default: false}
       - {label: "作者", name: "authors", widget: "list", required: false}
       - {label: "标签", name: "tags", widget: "list", required: false}
       - {label: "分类", name: "categories", widget: "list", required: false}
