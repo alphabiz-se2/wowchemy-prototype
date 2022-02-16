@@ -1,6 +1,6 @@
 ---
 language: zh
-filename: hero
+slug: hero
 
 widget: hero
 headless: true

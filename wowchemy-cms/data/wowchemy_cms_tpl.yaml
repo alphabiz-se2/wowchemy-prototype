@@ -27,16 +27,20 @@ collections:
     public_folder: ''
     # [Content]
     folder: 'content'
-    slug: '{{fields.filename}}'
+    slug: '{{fields.slug}}'
     path: '{{fields.language}}/home/{{slug}}'
     identifier_field: "slug"
-    filter: { field: 'slug' }
+    filter: { field: 'language', value: 'en' }
     summary: '[{{fields.language}}] {{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     fields:
       - label: "Slug"
         name: "slug"
-        widget: "string"
-#     [Filter]
+        required: true
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Cannot contain spaces, capital letters, or special characters. You may separate words with dashes and numbers are allowed."]
+        hint: "This will be used in the URL."
+
+
+  #     [Filter]
 #    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
 #    view_filters:
 #      - {label: "zh", field: "language", pattern: "zh"}
