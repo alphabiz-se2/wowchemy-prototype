@@ -27,53 +27,78 @@ common:
     identifier_field: "slug"
     summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     sortable_fields: ["weight"]
+    filter: { field: "type" }
     fields:
       - label: "ID"
-        name: "slug"
+        name: slug
         required: true
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
         hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
       - label: "启用组件"
-        name: "active"
-        widget: "boolean"
+        name: active
+        widget: boolean
         default: true
       - label: "序列"
-        name: "weight"
-        widget: "number"
+        name: weight
+        widget: number
         default: 10
-        value_type: "int"
+        value_type: int
         min: 0
         max: 1001
         step: 10
         hint: "组件显示的顺序，数值低的组件将排列在前面"
       - label: "组件类型"
-        name: "widget"
-        widget: "select"
-        default: "blink"
+        name: widget
+        widget: select
+        default: blink
         options: ["blink", "hero", "ab.features"]
         hint: "该字段对应 wowchemy 的模板"
 
       - label: "标题"
-        name: "title"
+        name: title
         required: true
       - label: "副标题"
-        name: "subtitle"
+        name: subtitle
       - label: "内容"
-        name: "body"
-        widget: "markdown"
+        name: body
+        widget: markdown
         required: false
 
       #########################
       #   ab.features fields
       #########################
-      - label: "组件参数(ab.features)"
+      - label: "【ab.features】特性"
         label_singular: "特性"
-        name: "features"
-        widget: "list"
-        hint: "ab.features组件的参数"
+        name: features
+        widget: list
         fields:
-          - {label: "名称", name: "name", widget: "string"}
-          - {label: "描述", name: "description", widget: "string"}
+          - {label: "名称", name: name, widget: string}
+          - {label: "描述", name: description, widget: string}
+
+      #########################
+      #   hero fields
+      #########################
+      - label: "【hero】cta按钮"
+        name: cta
+        widget: object
+        fields:
+          - {label: "名称", name: label}
+          - {label: "链接", name: url}
+          - {label: "图标包", name: icon_pack}
+          - {label: "图标", name: icon}
+
+      - label: "【hero】cta链接"
+        name: cta_alt
+        widget: object
+        fields:
+          - {label: "名称", name: label}
+          - {label: "链接", name: url}
+
+      - label: "【hero】cta链接"
+        name: cta_note
+        widget: object
+        fields:
+          - {label: "内容", name: label}
 
 collections:
   - <<: *base-collection
@@ -111,7 +136,7 @@ collections:
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Cannot contain spaces, capital letters, or special characters. You may separate words with dashes and numbers are allowed."]
         hint: "This will be used in the URL."
 
-#     [Filter]
+#    [Filter]
 #    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
 #    view_filters:
 #      - {label: "zh", field: "language", pattern: "zh"}
