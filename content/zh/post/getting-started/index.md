@@ -1,4 +1,5 @@
 ---
+slug: getting-started
 title: 欢迎使用Wowchemy，一个基于Hugo的网页构造器
 subtitle: Welcome 👋 We know that first impressions are important, so we've
   populated your new site with some initial content to help you get familiar

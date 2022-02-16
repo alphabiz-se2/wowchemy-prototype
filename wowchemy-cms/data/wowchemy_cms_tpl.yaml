@@ -230,6 +230,39 @@ collections:
     label: 博客(zh)
     folder: 'content/zh/post'
 
+#  - name: pages
+#    label: "Pages"
+#    files:
+#      - file: "content/privacy.md"
+#        label: "Privacy Policy"
+#        name: "privacy"
+#        fields:
+#          - {label: "Title", name: "title", widget: "string"}
+#          - {label: "Publish Date", name: "date", widget: "datetime"}
+#          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#          - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#          - label: "Draft"
+#            name: "draft"
+#            required: false
+#            widget: "boolean"
+#            default: false
+#          - {label: "Body", name: "body", widget: "markdown"}
+#      - file: "content/terms.md"
+#        label: "Terms"
+#        name: "terms"
+#        fields:
+#          - {label: "Title", name: "title", widget: "string"}
+#          - {label: "Publish Date", name: "date", widget: "datetime"}
+#          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#          - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#          - label: "Draft"
+#            name: "draft"
+#            required: false
+#            widget: "boolean"
+#            default: false
+#          - {label: "Body", name: "body", widget: "markdown"}
+
+
 #  - name: tab-test
 #    # [Dashboard]
 #    label: Tab Test # title
@@ -357,74 +390,6 @@ collections:
 #          - {label: Description for screen readers, name: alt_text, widget: string, required: false}
 #          - {label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart"}
 #          - {label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false}
-
-  - name: blog-zh
-    label: 博客
-    folder: 'content/zh/post'
-    path: '{{slug}}/index'
-    filter: {field: "cms_exclude"}
-    create: true  # Allow users to create new documents in this collection
-    fields:  # The fields each document in this collection have
-      - {label: "标题", name: "title", widget: "string"}
-      - {label: "副标题", name: "subtitle", widget: "string", required: false}
-      - {label: "内容", name: "body", widget: "markdown"}
-      - {label: "发布时间", name: "date", widget: "datetime"}
-      - {label: "概述", name: "summary", widget: "markdown", required: false}
-      - {label: "作为草稿", name: "draft", widget: "boolean", required: false, default: false}
-      - {label: "特性", name: "featured", widget: "boolean", required: false, default: false}
-      - {label: "作者", name: "authors", widget: "list", required: false}
-      - {label: "标签", name: "tags", widget: "list", required: false}
-      - {label: "分类", name: "categories", widget: "list", required: false}
-      - {label: "项目", name: "projects", widget: "list", required: false}
-      - label: "封面"
-        name: "image"
-        required: false
-        widget: object
-        fields:
-          - label: "上传一张名为 `featured.jpg/png` 的图片"
-            name: "filename"
-            widget: "image"
-            default: "featured"
-            required: false
-            media_library:
-              config:
-                multiple: false
-          - {label: "封面标题", name: caption, widget: string, required: false}
-          - {label: "封面描述文本", name: alt_text, widget: string, required: false}
-          - {label: "设置封面焦点。可选项（Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight）", name: focal_point, widget: string, required: false, default: "Smart"}
-          - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
-
-  - name: pages
-    label: "Pages"
-    files:
-      - file: "content/privacy.md"
-        label: "Privacy Policy"
-        name: "privacy"
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Publish Date", name: "date", widget: "datetime"}
-          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
-          - {label: "Summary", name: "summary", widget: "markdown", required: false}
-          - label: "Draft"
-            name: "draft"
-            required: false
-            widget: "boolean"
-            default: false
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "content/terms.md"
-        label: "Terms"
-        name: "terms"
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Publish Date", name: "date", widget: "datetime"}
-          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
-          - {label: "Summary", name: "summary", widget: "markdown", required: false}
-          - label: "Draft"
-            name: "draft"
-            required: false
-            widget: "boolean"
-            default: false
-          - {label: "Body", name: "body", widget: "markdown"}
 
 #  - name: authors
 #    label: Authors
