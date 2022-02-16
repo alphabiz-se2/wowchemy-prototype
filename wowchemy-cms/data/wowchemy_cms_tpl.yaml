@@ -26,15 +26,12 @@ collections:
     media_folder: '/assets/media'
     public_folder: ''
     # [Content]
-    folder: 'content/'
+    folder: 'content'
     slug: '{{fields.filename}}'
-    path: '{{fields.language}}/{{filename}}/{{slug}}'
-    summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
+    path: '{{fields.language}}/home/{{slug}}'
     identifier_field: "slug"
-    nested:
-      depth: 3
-      summary: '[{{dirname}}/{{filename}}.{{extension}}] {{slug}}'
-    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    filter: { field: 'slug' }
+    summary: '[{{fields.language}}] {{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     fields:
       - label: "Slug"
         name: "slug"
