@@ -8,23 +8,18 @@ active: true
 
 title: '**基于区块链重新定义数据传输网络生态**'
 
-hero_media: 'app_img_dark.jpg'
-
-cta:
-  label: 下载 Alphabiz
-  url: 'https://github.com/tanshuai/alphabiz/releases'
-  icon_pack: fas
-  icon: download
-
-cta_alt:
-  label: 查看文档
-  url: 'https://github.com/tanshuai/alphabiz/wiki'
-  
-#cta_note: 
-#  label: 'cta_note'
-  
-hero_style:
-  media_rounded: true
+hero:
+  hero_media: 'app_img_dark.jpg'
+  hero_style:
+    media_rounded: true
+  cta:
+    label: 下载 Alphabiz
+    url: 'https://github.com/tanshuai/alphabiz/releases'
+    icon_pack: fas
+    icon: download
+  cta_alt:
+    label: 查看文档
+    url: 'https://github.com/tanshuai/alphabiz/wiki'
   
 design:
   background:
