@@ -78,27 +78,35 @@ common:
       #########################
       #   hero fields
       #########################
-      - label: "【hero】cta按钮"
-        name: cta
+      - label: "【hero】"
+        name: hero
         widget: object
         fields:
-          - {label: "名称", name: label}
-          - {label: "链接", name: url}
-          - {label: "图标包", name: icon_pack}
-          - {label: "图标", name: icon}
-
-      - label: "【hero】cta链接"
-        name: cta_alt
-        widget: object
-        fields:
-          - {label: "名称", name: label}
-          - {label: "链接", name: url}
-
-      - label: "【hero】cta链接"
-        name: cta_note
-        widget: object
-        fields:
-          - {label: "内容", name: label}
+          - label: "按钮"
+            name: cta
+            widget: object
+            fields:
+              - {label: "名称", name: label}
+              - {label: "链接", name: url}
+              - {label: "图标包", name: icon_pack}
+              - {label: "图标", name: icon}
+          - label: "链接"
+            name: cta_alt
+            widget: object
+            fields:
+              - {label: "名称", name: label}
+              - {label: "链接", name: url}
+          - label: "文本"
+            name: cta_note
+            widget: object
+            fields:
+              - {label: "内容", name: label}
+          - label: "图片"
+            name: hero_media
+            widget: image
+            media_library:
+              config:
+                multiple: false
 
 collections:
   - <<: *base-collection

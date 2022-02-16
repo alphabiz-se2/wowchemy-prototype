@@ -6,24 +6,22 @@ weight: 10
 active: true
 
 title: '**Redefining Network Ecology of Data Transmission Based on Blockchain**'
-
-hero_media: 'app_img_dark.jpg'
-
-cta:
-  label: Get Alphabiz
-  url: 'https://github.com/tanshuai/alphabiz/releases'
-  icon_pack: fas
-  icon: download
-
-cta_alt:
-  label: View Documentation
-  url: 'https://github.com/tanshuai/alphabiz/wiki'
   
-cta_note: 
-  label: 'cta_note'
   
-hero_style:
-  media_rounded: true
+hero:
+  hero_media: 'app_img_dark.jpg'
+  hero_style:
+    media_rounded: true
+  cta:
+    label: Get Alphabizh
+    url: 'https://github.com/tanshuai/alphabiz/releases'
+    icon_pack: fas
+    icon: download  
+  cta_alt:
+    label: View Documentation
+    url: 'https://github.com/tanshuai/alphabiz/wiki'
+  cta_note: 
+    label: 'cta_note'
   
 design:
   background:
