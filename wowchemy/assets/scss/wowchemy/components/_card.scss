@@ -4,7 +4,6 @@
 
 .card-simple {
   //background: #fff;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.09);
   border-radius: 16px;
   margin-top: 1.8rem;
@@ -20,9 +19,9 @@
   }
 }
 
-.card-simple:first-of-type {
-  margin-top: 0;
-}
+//.card-simple:first-of-type {
+//  margin-top: 0;
+//}
 
 .card-simple p.read-more {
   margin: 0;

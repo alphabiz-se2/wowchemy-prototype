@@ -60,7 +60,7 @@
         <div class="d-none">
           <label>Do not fill this field unless you are a bot: <input name="_gotcha"></label>
         </div>
-        {{ if and $use_netlify_form $use_netlify_captcha }} 
+        {{ if and $use_netlify_form $use_netlify_captcha }}
           <div class="form-group" data-netlify-recaptcha="true"></div>
         {{ else if and $use_formspree_form $use_formspree_captcha }}
           <div class="g-recaptcha" data-sitekey="{{ $st.Params.content.form.formspree.captcha_key }}"></div>

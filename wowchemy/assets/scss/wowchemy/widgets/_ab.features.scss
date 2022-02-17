@@ -4,15 +4,18 @@
   .ab-title {
     font-size: 1.7rem;
     font-weight: bolder;
-    line-height: 1;
-  }
+    line-height: 1.5;
 
-  .ab-title-line {
-    width: 3rem;
-    height: 0.3rem;
-    border-radius: 0.15rem;
-    background-color: $sta-primary;
-    margin: 0.5rem auto 0;
+    &:after{
+      content: "";
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      height: 0.3rem;
+      width: 3rem;
+      border-radius: 0.15rem;
+      background-color: $sta-primary;
+    }
   }
 
   .ab-subtitle {

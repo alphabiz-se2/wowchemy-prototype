@@ -2,6 +2,10 @@
  *  Contact
  **************************************************/
 
+.wg-contact > .container {
+  max-width: 1024px;
+}
+
 .wg-contact .fa-ul {
   margin-left: 3.14285714rem; /* Must be > `fa-2x` icon size. */
 }

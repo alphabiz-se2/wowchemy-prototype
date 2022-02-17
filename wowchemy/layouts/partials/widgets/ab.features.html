@@ -4,7 +4,6 @@
 <div class="row ab-features">
   <div class="col-md-12 mb-3">
     <div class="ab-title">{{ i18n $page.Title | default $page.Title | markdownify | emojify }}</div>
-    <div class="ab-title-line"><div></div></div>
     {{ if $page.Params.subtitle }}<p class="ab-subtitle">{{ i18n $page.Params.subtitle | default $page.Params.subtitle | markdownify | emojify }}</p>{{ end }}
   </div>
 

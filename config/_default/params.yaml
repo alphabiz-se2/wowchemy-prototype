@@ -42,6 +42,15 @@ cms:
 
 sharing: false # blog share
 
+# contact widget links
+email:
+phone:
+address:
+  street:
+directions:
+office_hours:
+appointment_url:
+
 ########################################################################################################################
 
 # SEO
@@ -74,7 +83,6 @@ edit_page:
     post: false
 show_related:
   post: true
-email: test@example.org
 sharing_image: ''
 reading_time: true
 section_pager: true
@@ -115,3 +123,4 @@ marketing:
 icon:
   pack:
     ai: false
+

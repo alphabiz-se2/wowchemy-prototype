@@ -2,6 +2,10 @@
  *  Page Builder: sections and widgets
  **************************************************/
 
+.wg-pages .container {
+  max-width: 1024px;
+}
+
 .home-section {
   // Use `background` rather than `background-color` so it can support gradients in theme packs.
   background: $sta-home-section-odd;
@@ -140,7 +144,20 @@
   }
 }
 
+.section-heading h1:after{
+  content: '';
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 0.35rem;
+  width: 3rem;
+  border-radius: 0.2rem;
+  background-color: $sta-primary;
+}
+
 .section-heading h1 {
+  font-size: 1.7rem;
+  font-weight: bolder;
   margin: 0 0 10px 0;
 }
 

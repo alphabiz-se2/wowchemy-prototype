@@ -48,9 +48,8 @@ body.no-navbar {
   scroll-padding-top: 0 !important;
 }
 
-
 body, body * {
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     width: 12px;
     height: 12px;
   }
