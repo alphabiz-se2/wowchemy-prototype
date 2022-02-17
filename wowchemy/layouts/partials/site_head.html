@@ -268,9 +268,13 @@
   {{ with .Params.seo.title }}
     {{ $title = replace . "{brand}" site.Title }}
   {{ else }}
+
     {{ $title = .Title | default site.Title }}
+
     {{ if ne $title site.Title }}{{ $title = printf "%s | %s" $title site.Title }}{{ end }}
   {{ end }}
+
+
   <meta property="twitter:card" content="{{ $twitter_card }}" />
   {{ with site.Params.seo.twitter }}
     <meta property="twitter:site" content="@{{ . }}" />

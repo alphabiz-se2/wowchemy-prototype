@@ -98,9 +98,7 @@
           width="{{ $image.Width }}"
           height="{{ $image.Height }}"
           alt="{{ $page.Title }}"
-          class="
-          {{ if $style.hero.media_rounded }}{{ "rounded-lg" }}{{ end }}
-          "
+          class="{{ if $style.media_rounded }}{{ "rounded-lg" }}{{ end }}"
         >
       {{ end }}
     {{ end }}

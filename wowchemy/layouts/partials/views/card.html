@@ -22,6 +22,10 @@
 
 <div class="card-simple view-card">
 
+  <div class="section-subheading article-title mb-1 mt-3">
+    <a href="{{ $link }}" {{ $target | safeHTMLAttr }}>{{ $item.Title }}</a>
+  </div>
+
   {{ if eq $item.Type "event" }}
   <div class="article-metadata">
     {{ if $item.Params.authors }}
@@ -46,16 +50,12 @@
   {{ with $resource }}
   {{ $image := .Fill (printf "808x455 webp %s" $anchor) }}
   <a href="{{ $link }}" {{ $target | safeHTMLAttr }}>
-    <div class="img-hover-zoom">
+    <div class="img-hover-zoom mb-3">
       <img src="{{ $image.RelPermalink }}" height="{{ $image.Height }}" width="{{ $image.Width }}"
            class="article-banner" alt="{{ $item.Title }}" loading="lazy">
     </div>
   </a>
   {{end}}
-
-  <div class="section-subheading article-title mb-1 mt-3">
-    <a href="{{ $link }}" {{ $target | safeHTMLAttr }}>{{ $item.Title }}</a>
-  </div>
 
   {{ with $summary }}
   <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="summary-link">

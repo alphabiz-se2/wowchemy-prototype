@@ -29,6 +29,8 @@
 }
 
 .featured-image-wrapper {
+  max-width: 760px !important;
+
   position: relative;
   padding-left: 0; /* Override container padding. */
   padding-right: 0; /* Override container padding. */

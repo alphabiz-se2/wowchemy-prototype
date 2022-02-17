@@ -3,10 +3,10 @@ locale:
   date_format: 'Jan 2, 2006'
 
 # Site footer
-footer:
-  text: 'a footer static text'
+#footer:
+#  text: 'a footer static text'
 copyright:
-  notice: '© {year} wowchemy prototype. All Rights Reserved'
+  notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
 #  license:
 #    enable: true
 #    allow_commercial: false

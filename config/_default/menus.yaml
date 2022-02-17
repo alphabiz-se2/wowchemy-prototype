@@ -8,8 +8,8 @@ main:
     url: /
     weight: 10
 
-  - name: menu_item_post
-    url: post/
+  - name: menu_item_blog
+    url: blog/
     weight: 20
 
   - name: menu_item_download

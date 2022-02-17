@@ -41,11 +41,40 @@ body {
     // Offset body content by fixed navbar height.
     margin-top: 50px;
   }
+
 }
 body.no-navbar {
   margin-top: 0 !important;
   scroll-padding-top: 0 !important;
 }
+
+
+body, body * {
+  &::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+  }
+  &::-webkit-scrollbar-track{
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 127, 127, 0.6);
+  }
+}
+
+//body {
+//  &, & * {
+//    &::-webkit-scrollbar-thumb {
+//      background-color: rgba(0, 0, 0, 0.3);
+//    }
+//  }
+//  &.dark, &.dark * {
+//    &::-webkit-scrollbar-thumb {
+//      background-color: rgba(255, 255, 255, 0.3);
+//    }
+//  }
+//}
 
 // PAGE LAYOUT
 // Designed to push footer to bottom of viewport for short pages.
@@ -266,9 +295,9 @@ mark,
   width: 100%;
 }
 
-@media only screen and (min-width: 1001px) {
+@media only screen and (min-width: 821px) {
   .universal-wrapper {
-    width: 1000px;
+    width: 820px;
   }
 }
 
@@ -280,3 +309,5 @@ small,
 .responsive-wrap iframe {
   max-width: 100%;
 }
+
+

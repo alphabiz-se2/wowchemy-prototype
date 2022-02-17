@@ -14,7 +14,6 @@ i18n:
   locales: [en, zh]
   default_locale: en
 
-
 common:
   base: &base-collection
     create: true
@@ -203,32 +202,38 @@ collections:
   - <<: *base-collection
     name: home-en
     label: 主页(en)
+    label_singular: 组件
     folder: 'content/en/home'
 
   - <<: *base-collection
     name: home-zh
     label: 主页(zh)
+    label_singular: 组件
     folder: 'content/zh/home'
 
   - <<: *base-collection
     name: about-en
     label: 关于(en)
+    label_singular: 组件
     folder: 'content/en/about'
 
   - <<: *base-collection
     name: about-zh
     label: 关于(zh)
+    label_singular: 组件
     folder: 'content/zh/about'
 
   - <<: *base-post
     name: blog-en
     label: 博客(en)
-    folder: 'content/en/post'
+    label_singular: 博文
+    folder: 'content/en/blog'
 
   - <<: *base-post
     name: blog-zh
     label: 博客(zh)
-    folder: 'content/zh/post'
+    label_singular: 博文
+    folder: 'content/zh/blog'
 
 #  - name: pages
 #    label: "Pages"

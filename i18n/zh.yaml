@@ -1,6 +1,6 @@
 - id: menu_item_home
   translation: 主页
-- id: menu_item_post
+- id: menu_item_blog
   translation: 博客
 - id: menu_item_download
   translation: 下载

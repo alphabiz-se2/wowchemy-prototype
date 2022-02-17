@@ -1,7 +1,7 @@
 - id: menu_item_home
   translation: Home
-- id: menu_item_post
-  translation: Post
+- id: menu_item_blog
+  translation: Blog
 - id: menu_item_download
   translation: Download
 - id: menu_item_docs

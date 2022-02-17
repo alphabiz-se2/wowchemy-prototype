@@ -1,8 +1,8 @@
 copyright:
-  notice: '© {year} wowchemy prototype.'
+  notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
 
 # Localization
 locale:
-  date_format: '2006 Jan 2'
+  date_format: '2006年1月2日'
 
 ########################################################################################################################
