@@ -149,15 +149,16 @@
   display: block;
   margin: 0 auto;
   text-align: center;
-  height: 0.35rem;
+  height: 0.3rem;
   width: 3rem;
-  border-radius: 0.2rem;
+  border-radius: 0.15rem;
   background-color: $sta-primary;
 }
 
 .section-heading h1 {
   font-size: 1.7rem;
   font-weight: bolder;
+  line-height: 1.5;
   margin: 0 0 10px 0;
 }
 
