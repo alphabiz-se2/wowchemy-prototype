@@ -13,8 +13,8 @@ i18n:
   # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
   # single_file - persists a single file in `<folder>/<slug>.<extension>`
   structure: multiple_folders
-  locales: [en, de]
-  default_locale: de
+  locales: [en, zh]
+  default_locale: zh
 
 common:
   base: &base-collection
