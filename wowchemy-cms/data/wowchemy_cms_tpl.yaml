@@ -1,5 +1,4 @@
-locale: 'de'
-
+locale: 'zh'
 
 backend:
   name: git-gateway
