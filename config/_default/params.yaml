@@ -23,6 +23,11 @@ header:
     show_search: true
     show_logo: true
 
+plugins_js:
+  [alphabiz, particles]
+plugins_vendor:
+  [easepack, tween]
+
 # contact footer
 contact:
   - type: email
@@ -92,7 +97,6 @@ section_pager: true
 #  share_alike: true
 #  allow_commercial: false
 #  notice: 'This work is licensed under {license}'
-plugins_js: []
 avatar:
   gravatar: false
   shape: circle

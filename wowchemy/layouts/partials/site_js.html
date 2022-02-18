@@ -6,6 +6,11 @@
     {{- range $lib_names -}}
         {{- $libs = $libs | append (resources.Get (printf "js/_vendor/%s.js" .) ) -}}
     {{- end -}}
+    {{ if site.Params.plugins_vendor }}
+      {{- range site.Params.plugins_vendor -}}
+        {{- $libs = $libs | append (resources.Get (printf "js/_vendor/%s.js" .) ) -}}
+      {{- end -}}
+    {{ end }}
     {{ $libs := $libs | resources.Concat "js/vendor-bundle.js" | minify }}
     {{- if hugo.IsProduction -}}
       {{ $libs = $libs | fingerprint "md5" }}

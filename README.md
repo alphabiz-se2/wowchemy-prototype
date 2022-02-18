@@ -124,7 +124,34 @@ copyright:
   notice: '© {year} Me'
 ```
 
-# 4. I18n
+
+# 4. Custom JS
+
+### 1. module
+
+put your module into `assets/js/_vendor` folder, then config `plugins_vendor` prop in the `params.yaml`
+
+> site/assets/js/_vendor/tween.js
+
+> params.js
+
+```yaml
+plugins_vendor: [tween]
+```
+
+### 2. general
+
+put your js file into `assets/js` folder, then config `plugins_js` prop in the `params.yaml`
+
+> site/assets/js/particles.js
+
+> params.js
+
+```yaml
+plugins_js: [particles]
+```
+
+# 5. I18n
 
 ## Config
 
