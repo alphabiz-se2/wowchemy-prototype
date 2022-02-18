@@ -1,4 +1,3 @@
-locale: 'de'
 module:
   mounts:
     - source: data
