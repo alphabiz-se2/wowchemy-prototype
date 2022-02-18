@@ -201,6 +201,25 @@ common:
 
 
 collections:
+
+ - name: i18nPosts
+    label: i18nPosts
+    folder: content/i18nposts
+    create: true
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        i18n: true
+      - label: Date
+        name: date
+        widget: datetime
+        i18n: duplicate
+      - label: Body
+        name: body
+        widget: markdown
+    
   - <<: *base-collection
     name: home-en
     label: 主页(en)
