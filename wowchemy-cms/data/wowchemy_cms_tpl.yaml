@@ -1,3 +1,4 @@
+locale: 'zh_Hans'
 
 backend:
   name: git-gateway
@@ -12,8 +13,8 @@ i18n:
   # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
   # single_file - persists a single file in `<folder>/<slug>.<extension>`
   structure: multiple_folders
-  locales: [en, zh_Hans]
-  default_locale: zh_Hans
+  locales: [en, zh]
+  default_locale: zh
 
 common:
   base: &base-collection
