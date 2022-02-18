@@ -1,4 +1,4 @@
-locale: 'zh'
+locale: 'zh_Hans'
 
 backend:
   name: git-gateway
