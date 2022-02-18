@@ -13,8 +13,8 @@ i18n:
   # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
   # single_file - persists a single file in `<folder>/<slug>.<extension>`
   structure: multiple_folders
-  locales: [en, zh]
-  default_locale: zh
+  locales: [en, zh-hans, zh-hant]
+  default_locale: en
 
 common:
   base: &base-collection
@@ -217,6 +217,7 @@ collections:
         i18n: duplicate
       - label: Body
         name: body
+        i18n: true
         widget: markdown
     
   - <<: *base-collection
