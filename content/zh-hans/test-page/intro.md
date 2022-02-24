@@ -1,10 +1,6 @@
 ---
-widget: ab.features
-weight: 10
-active: true
 
 title: Intro2
-
 subtitle: What is AlphaBiz?2
 
 ---

@@ -205,7 +205,6 @@ collections:
     path: 'test-page/{{slug}}'
     filter: {field: "belong", value: "test-page"}
 
-
     folder: 'content'
     slug: '{{fields.slug}}'
     identifier_field: "widget_id"
@@ -213,14 +212,14 @@ collections:
     create: true
     delete: true
     sortable_fields: ["weight"]
-    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+    summary: '[{{fields.belong}}]{{fields.slug}}'
     # [Folders Env]
     media_folder: '/assets/media'
     public_folder: ''
     fields:
       - label: "Belong"
         name: belong
-        i18n: duplicate
+        i18n: false
         widget: string
         request: true
       - label: "ID"
@@ -230,12 +229,6 @@ collections:
         required: true
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
         hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
-      - label: "启用组件"
-        name: active
-        i18n: duplicate
-        widget: boolean
-        required: true
-        default: true
       - label: "序列"
         name: weight
         i18n: duplicate
@@ -247,6 +240,12 @@ collections:
         max: 1001
         step: 10
         hint: "组件显示的顺序，数值低的组件将排列在前面"
+      - label: "启用组件"
+        name: active
+        i18n: duplicate
+        widget: boolean
+        required: true
+        default: true
       - label: "内容"
         name: body
         i18n: true
