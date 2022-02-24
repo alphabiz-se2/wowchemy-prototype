@@ -1,6 +1,4 @@
 ---
-belong: test-page
-slug: intro
 widget: ab.features
 weight: 10
 active: true

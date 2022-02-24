@@ -214,6 +214,10 @@ collections:
         name: slug
         i18n: duplicate
         widget: string
+      - label: "Belong"
+        name: belong
+        i18n: duplicate
+        widget: string
 
   - name: iposts
     label: iPosts
