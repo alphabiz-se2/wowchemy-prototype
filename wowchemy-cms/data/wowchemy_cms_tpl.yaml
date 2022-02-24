@@ -199,8 +199,22 @@ common:
           - {label: "设置封面焦点", name: focal_point, widget: string, required: false, default: "Smart", hint: "可选项: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight"}
           - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
 
-
 collections:
+  - name: iAbout
+    label: iAbout
+    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+    folder: 'content'
+    i18n: true
+    slug: '{{fields.slug}}'
+    path: '{{slug}}/index'
+    filter: {field: "slug", value: "test-page"}
+    identifier_field: "slug"
+    fields:
+      - label: "Slug"
+        name: slug
+        i18n: duplicate
+        widget: string
+
   - name: iposts
     label: iPosts
     folder: content/iposts
@@ -219,38 +233,6 @@ collections:
         name: body
         i18n: true
         widget: markdown
-
-  - name: iAbout
-    label: iAbout
-    folder: content
-    create: true
-    delete: true
-    i18n: true
-    # [Folders Env]
-    media_folder: '/assets/media'
-    public_folder: ''
-    slug: '{{fields.slug}}'
-    identifier_field: "slug"
-    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
-#    filter: { field: "type" }
-    sortable_fields: ["weight"]
-    fields:
-      - label: "Slug"
-        name: slug
-        i18n: duplicate
-        widget: string
-#      - label: Title
-#        name: title
-#        i18n: true
-#        widget: string
-#      - label: Date
-#        name: date
-#        i18n: duplicate
-#        widget: datetime
-#      - label: Body
-#        name: body
-#        i18n: true
-#        widget: markdown
 
   - <<: *base-collection
     name: home-en
