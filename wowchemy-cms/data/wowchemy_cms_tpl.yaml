@@ -222,7 +222,7 @@ collections:
         i18n: false
         widget: select
         request: true
-        options: ["home", "about"]
+        options: ["home", "about", "test-page"]
         hint: "选择组件所应用的页面"
       - label: "ID"
         name: slug
