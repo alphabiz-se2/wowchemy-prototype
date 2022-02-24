@@ -1,3 +1,0 @@
----
----
-Hant content
