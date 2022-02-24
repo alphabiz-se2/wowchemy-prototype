@@ -1,5 +1,5 @@
 ---
-language: en
+belong: about
 slug: intro
 widget: ab.features
 weight: 10

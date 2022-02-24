@@ -1,4 +1,4 @@
 ---
-title: 关于
+title: About
 type: widget_page
 ---

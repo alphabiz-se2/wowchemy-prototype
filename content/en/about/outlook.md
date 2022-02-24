@@ -1,5 +1,5 @@
 ---
-language: en
+belong: about
 slug: outlook
 widget: ab.features
 weight: 20

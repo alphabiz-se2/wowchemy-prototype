@@ -1,5 +1,5 @@
 ---
-language: en
+belong: about
 slug: contact
 widget: contact
 weight: 30
