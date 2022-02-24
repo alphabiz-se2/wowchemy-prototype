@@ -219,7 +219,39 @@ collections:
         name: body
         i18n: true
         widget: markdown
-    
+
+  - name: iAbout
+    label: iAbout
+    folder: content
+    create: true
+    delete: true
+    i18n: true
+    # [Folders Env]
+    media_folder: '/assets/media'
+    public_folder: ''
+    slug: '{{fields.slug}}'
+    identifier_field: "slug"
+    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+#    filter: { field: "type" }
+    sortable_fields: ["weight"]
+    fields:
+      - label: "Slug"
+        name: slug
+        i18n: duplicate
+        widget: string
+#      - label: Title
+#        name: title
+#        i18n: true
+#        widget: string
+#      - label: Date
+#        name: date
+#        i18n: duplicate
+#        widget: datetime
+#      - label: Body
+#        name: body
+#        i18n: true
+#        widget: markdown
+
   - <<: *base-collection
     name: home-en
     label: 主页(en)
