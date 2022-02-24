@@ -201,13 +201,13 @@ common:
 
 collections:
   - name: iAbout
-    label: iAbout
+    label: I-ABOUT
+    i18n: true
     summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
     folder: 'content'
-    i18n: true
     slug: '{{fields.slug}}'
-    path: '{{slug}}/index'
-    filter: {field: "slug", value: "test-page"}
+    path: 'test-page/{{slug}}'
+    filter: {field: "belong", value: "test-page"}
     identifier_field: "slug"
     fields:
       - label: "Slug"
