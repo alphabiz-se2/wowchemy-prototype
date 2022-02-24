@@ -217,11 +217,13 @@ collections:
     media_folder: '/assets/media'
     public_folder: ''
     fields:
-      - label: "Belong"
+      - label: "归属页面"
         name: belong
         i18n: false
-        widget: string
+        widget: select
         request: true
+        options: ["home", "about"]
+        hint: "选择组件所应用的页面"
       - label: "ID"
         name: slug
         i18n: duplicate
@@ -240,12 +242,27 @@ collections:
         max: 1001
         step: 10
         hint: "组件显示的顺序，数值低的组件将排列在前面"
+      - label: "组件类型"
+        name: widget
+        i18n: duplicate
+        widget: select
+        default: blink
+        options: ["blink", "hero", "ab.features"]
+        hint: "选择使用的组件的 wowchemy 模板"
       - label: "启用组件"
         name: active
         i18n: duplicate
         widget: boolean
         required: true
         default: true
+
+      - label: "标题"
+        name: title
+        i18n: true
+        required: true
+      - label: "副标题"
+        name: subtitle
+        i18n: true
       - label: "内容"
         name: body
         i18n: true
@@ -258,12 +275,101 @@ collections:
       - label: "【ab.features】"
         label_singular: "特性"
         name: features
+        i18n: true
         widget: list
         collapsed: true
         fields:
-          - {label: "名称", name: name, widget: string}
-          - {label: "描述", name: description, widget: string}
+          - {label: "名称", name: name, i18n: true, widget: string}
+          - {label: "描述", name: description, i18n: true, widget: string}
 
+      #########################
+      #   hero fields
+      #########################
+      - label: "【hero】"
+        name: hero
+        i18n: true
+        widget: object
+        collapsed: true
+        fields:
+          - label: "按钮"
+            name: cta
+            i18n: true
+            widget: object
+            fields:
+              - {label: "名称", name: label, i18n: true}
+              - {label: "链接", name: url, i18n: duplicate}
+              - {label: "图标包", name: icon_pack, i18n: duplicate}
+              - {label: "图标", name: icon, i18n: duplicate}
+          - label: "链接"
+            name: cta_alt
+            i18n: true
+            widget: object
+            fields:
+              - {label: "名称", name: label, i18n: true}
+              - {label: "链接", name: url, i18n: duplicate}
+          - label: "文本"
+            name: cta_note
+            i18n: true
+            widget: object
+            fields:
+              - {label: "内容", name: label, i18n: true}
+          - label: "图片"
+            name: hero_media
+            i18n: duplicate
+            widget: image
+            media_library:
+              config:
+                multiple: false
+
+      #########################
+      #   design
+      #########################
+      - label: "组件样式"
+        name: "design"
+        i18n: true
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - label: "内容布局"
+            name: columns
+            i18n: duplicate
+            widget: "select"
+            options: ['1', '2']
+            default: "2"
+            required: false
+            hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
+          - label: "组件背景"
+            name: "background"
+            i18n: true
+            widget: "object"
+            required: false
+            fields:
+              - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+              - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+              - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+              - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: boolean, default: false}
+              - label: 图片背景
+                name: image
+                i18n: duplicate
+                widget: image
+                required: false
+                # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
+                media_folder: '/assets/media'
+                public_folder: ''
+                media_library:
+                  config:
+                    multiple: false
+              - label: "图片不透明度"
+                name: "image_darken"
+                i18n: duplicate
+                widget: "number"
+                default: 0.0
+                value_type: "float"
+                min: 0.0
+                max: 1.0
+                step: 0.1
+                required: false
 
   - name: iposts
     label: iPosts
