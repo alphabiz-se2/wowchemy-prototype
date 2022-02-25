@@ -12,9 +12,11 @@ content:
     category: ""
     publication_type: ""
     author: ""
-    exclude_featured: false
-    exclude_future: false
-    exclude_past: false
+    exclude_featured: null
+    exclude_future: null
+    exclude_past: null
+    folders:
+      - blog
   order: desc
 design:
   columns: "2"
