@@ -130,7 +130,9 @@ common:
     collapsed: true
     fields:
       - {label: "名称", name: name, i18n: true, widget: string}
-      - {label: "描述", name: description, i18n: true, widget: string}
+      - {label: "描述", name: description, i18n: true, widget: string, required: false}
+      - {label: "图标", name: icon, i18n: duplicate, widget: string, required: false}
+      - {label: "图标包", name: icon_pack, i18n: duplicate, widget: string, required: false}
 
   #########################
   ##   hero fields
