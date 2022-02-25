@@ -5,7 +5,7 @@ featureHover: true
 slug: outlook
 weight: 20
 title: 前景
-subtitle: null
+subtitle: ""
 features:
   - name: 全球內容無阻
     description: 通過應用將打破人為的地域限制，用戶可以暢通無阻地檢索並下載來自全球各地的數位內容

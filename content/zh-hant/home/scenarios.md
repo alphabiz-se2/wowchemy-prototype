@@ -5,7 +5,7 @@ widget: ab.features
 active: true
 title: 應用場景
 featureHover: true
-subtitle: null
+subtitle: ""
 features:
   - name: 版權發行（發佈）
     description: 影視、刊物、音訊、軟件等數位內容可以自由免費發行，不再需要發行商、影視院線、監管機构授權及審批即可在保護版權和收益的情况下走向全球市場
