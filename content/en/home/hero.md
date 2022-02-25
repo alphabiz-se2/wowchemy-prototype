@@ -22,7 +22,7 @@ design:
     image: background_earth.png
     image_size: contain
     image_position: top
-    image_opacity: "0.6"
+    image_opacity: 0.6
     image_parallax: false
   css_class: fullscreen
 ---

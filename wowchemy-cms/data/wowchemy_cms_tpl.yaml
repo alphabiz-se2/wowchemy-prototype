@@ -199,10 +199,14 @@ common:
         widget: "object"
         required: false
         fields:
+          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: boolean, default: false}
+          # solid color
           - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+          # gradient color
           - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
           - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: boolean, default: false}
+          - {label: '渐变颜色背景角度', name: gradient_angle, i18n: duplicate, widget: number, min: 0, max: 360, step: 1, value_type: "int", required: false}
+          # image
           - label: 图片背景
             name: image
             i18n: duplicate
@@ -214,16 +218,22 @@ common:
             media_library:
               config:
                 multiple: false
-          - label: "图片不透明度"
-            name: "image_darken"
-            i18n: duplicate
-            widget: "number"
-            default: 0.0
-            value_type: "float"
-            min: 0.0
-            max: 1.0
-            step: 0.1
-            required: false
+          # image options
+          - {label: "图片尺寸缩放", name: "image_size", i18n: duplicate, widget: "select", options: ["contain", "cover", "actual"], required: false}
+          - {label: "图片不透明度", name: "image_opacity", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false}
+          - {label: "图片明度", name: "image_darken", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false}
+          - {label: "图片定位", name: "image_position", i18n: duplicate, widget: "select", options: ["left", "center", "right"], required: false}
+          - {label: "启用图片视差", name: "image_parallax", i18n: duplicate, widget: "boolean", required: false}
+      - label: "嵌入class"
+        name: css_class
+        i18n: duplicate
+        widget: string
+        required: false
+      - label: "嵌入style"
+        name: css_style
+        i18n: duplicate
+        widget: string
+        required: false
 
   ###################################################################
 
@@ -270,25 +280,6 @@ collections:
     label: '关于'
     path: 'about/{{slug}}'
     filter: {field: "belong", value: "about"}
-
-  - name: iposts
-    label: iPosts
-    folder: content/iposts
-    create: true
-    i18n: true
-    fields:
-      - label: Title
-        name: title
-        widget: string
-        i18n: true
-      - label: Date
-        name: date
-        widget: datetime
-        i18n: duplicate
-      - label: Body
-        name: body
-        i18n: true
-        widget: markdown
 
 #  - <<: *base-collection
 #    name: home-en

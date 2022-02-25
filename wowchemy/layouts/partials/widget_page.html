@@ -68,9 +68,11 @@
       {{/* Allow valid CSS positions including left, center, and right. */}}
       {{ $style_bg = printf "%sbackground-position: %s;" $style_bg . }}
     {{ end }}
-    {{ with $bg.image_opacity }}
-      {{ $style_bg = printf "%sopacity: %s;" $style_bg . }}
-    {{ end }}
+  {{ end }}
+
+
+  {{ if $bg.image_opacity }}
+    {{ $style_bg = printf "%sopacity: %s;" $style_bg (string $bg.image_opacity) }}
   {{ end }}
 
   {{ if $bg.image_darken }}
