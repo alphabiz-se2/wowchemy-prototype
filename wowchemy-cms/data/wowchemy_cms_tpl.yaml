@@ -192,13 +192,13 @@ common:
         i18n: duplicate
         widget: number
         default: 3
-        reqiured: false
+        required: false
       - label: 排序方式
         name: order
         i18n: duplicate
         widget: select
         options: [desc, asc]
-        reqiured: false
+        required: false
       - label: 条件筛选
         name: filters
         i18n: true
