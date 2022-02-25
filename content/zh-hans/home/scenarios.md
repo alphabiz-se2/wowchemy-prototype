@@ -1,5 +1,10 @@
 ---
+slug: scenarios
+weight: 20
+widget: ab.features
+active: true
 title: 应用场景
+featureHover: true
 features:
   - name: 版权发行（发布）
     description: 影视、刊物、音频、软件等数字内容可以自由免费发行，不再需要发行商、影视院线、监管机构授权及审批即可在保护版权和收益的情况下走向全球市场

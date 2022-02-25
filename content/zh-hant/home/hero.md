@@ -1,5 +1,8 @@
 ---
 slug: hero
+weight: 10
+widget: hero
+active: true
 title: "**基於區塊鏈重新定義資料傳輸的網絡生態**"
 hero:
   cta:

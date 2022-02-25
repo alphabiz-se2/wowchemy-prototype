@@ -1,5 +1,10 @@
 ---
+slug: scenarios
+weight: 20
+widget: ab.features
+active: true
 title: 應用場景
+featureHover: true
 subtitle: null
 features:
   - name: 版權發行（發佈）

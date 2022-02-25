@@ -1,4 +1,8 @@
 ---
+slug: credits
+weight: 30
+widget: ab.features
+active: true
 title: AB 积分
 subtitle: AlphaBiz's Credit（缩写：AB），符号：α。 AB是AlphaBiz用于数字内容价值交换和流通的信用，也是一种资源数字资产
 features:
