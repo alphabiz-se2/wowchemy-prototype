@@ -1,4 +1,8 @@
 ---
+slug: credits
+weight: 30
+widget: ab.features
+active: true
 title: AB 積分
 subtitle: AlphaBiz's Credit（縮寫：AB），符號： α。  AB是AlphaBiz用於數位內容價值交換和流通的信用，也是一種資源數位資產
 features:
