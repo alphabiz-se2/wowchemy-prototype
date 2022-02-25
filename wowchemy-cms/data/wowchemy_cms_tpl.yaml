@@ -103,12 +103,13 @@ common:
   base-widget-title: &base-widget-title
     label: "标题"
     name: title
-    i18n: true
-    required: false
+    i18n: true,
+    required: true
   base-widget-subtitle: &base-widget-subtitle
     label: "副标题"
     name: subtitle
     i18n: true
+    default: ''
     required: false
   base-widget-body: &base-widget-body
     label: "内容"
@@ -290,17 +291,18 @@ common:
         fields:
           - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: select, options: ['true', 'false'], default: 'unset'}
           # solid color
-          - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+          - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
           # gradient color
-          - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-          - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-          - {label: '渐变颜色背景角度', name: gradient_angle, i18n: duplicate, widget: number, min: 0, max: 360, step: 1, value_type: "int", required: false}
+          - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
+          - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
+          - {label: '渐变颜色背景角度', name: gradient_angle, i18n: duplicate, widget: number, min: 0, max: 360, step: 1, value_type: "int", required: false, default: 0}
           # image
           - label: 图片背景
             name: image
             i18n: duplicate
             widget: image
             required: false
+            default: ''
             # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
             media_folder: '/assets/media'
             public_folder: ''
@@ -308,20 +310,22 @@ common:
               config:
                 multiple: false
           # image options
-          - {label: "图片尺寸缩放", name: "image_size", i18n: duplicate, widget: "select", options: ["contain", "cover", "actual"], required: false}
-          - {label: "图片不透明度", name: "image_opacity", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false}
-          - {label: "图片明度", name: "image_darken", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false}
-          - {label: "图片定位", name: "image_position", i18n: duplicate, widget: "select", options: ["left", "center", "right"], required: false}
-          - {label: "启用图片视差", name: "image_parallax", i18n: duplicate, widget: "boolean", required: false}
+          - {label: "图片尺寸缩放", name: "image_size", i18n: duplicate, widget: "select", options: ["contain", "cover", "actual"], required: false, default: 'cover'}
+          - {label: "图片不透明度", name: "image_opacity", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false, default: 1}
+          - {label: "图片明度", name: "image_darken", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false, default: ''}
+          - {label: "图片定位", name: "image_position", i18n: duplicate, widget: "select", options: ["left", "center", "right"], required: false, default: 'center'}
+          - {label: "启用图片视差", name: "image_parallax", i18n: duplicate, widget: "boolean", required: false, default: false}
       - label: "嵌入class"
         name: css_class
         i18n: duplicate
         widget: string
+        default: ""
         required: false
       - label: "嵌入style"
         name: css_style
         i18n: duplicate
         widget: string
+        default: ""
         required: false
 
   ###################################################################
