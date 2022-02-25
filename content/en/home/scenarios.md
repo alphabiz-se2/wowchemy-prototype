@@ -1,5 +1,5 @@
 ---
-language: en
+belong: home
 slug: scenarios
 widget: ab.features
 weight: 20
