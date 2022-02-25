@@ -61,6 +61,8 @@ common:
           - {label: "设置封面焦点", name: focal_point, widget: string, required: false, default: "Smart", hint: "可选项: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight"}
           - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
 
+  ###################################################################
+
   base-widget-belong: &base-widget-belong
     label: "归属页面"
     name: belong
@@ -372,6 +374,10 @@ common:
       - <<: *base-widget-hero
       - <<: *base-widget-design
 
+  ###################################################################
+  ###################################################################
+
+
 collections:
   - <<: *base-widget
     <<: *base-widget-fields
@@ -386,6 +392,20 @@ collections:
     label: '关于'
     path: 'about/{{slug}}'
     filter: {field: "belong", value: "about"}
+
+  - label: 博客
+    name: blog
+    label_singular: 博文
+    folder: 'content'
+    slug: '{{fields.slug}}'
+    path: 'blog/{{slug}}/index'
+    filter: {field: "belong", value: "blog"}
+    i18n: true
+    create: true
+    delete: true
+    fields:
+      - <<: *base-widget-belong
+      - <<: *base-widget-slug
 
 #  - <<: *base-collection
 #    name: home-en

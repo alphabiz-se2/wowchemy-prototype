@@ -1,4 +1,5 @@
 ---
+belong: blog
 slug: test-post
 title: Test Post
 subtitle: test post sub title
