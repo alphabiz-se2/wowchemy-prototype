@@ -248,7 +248,7 @@ common:
     create: true
     delete: true
     sortable_fields: ["weight"]
-    summary: '[{{fields.belong}}]{{fields.slug}}'
+    summary: '[ {{fields.weight}} ] {{fields.slug}}'
     # [Folders Env]
     media_folder: '/assets/media'
     public_folder: ''

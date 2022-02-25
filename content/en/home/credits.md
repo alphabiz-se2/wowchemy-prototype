@@ -1,5 +1,5 @@
 ---
-language: en
+belong: home
 slug: credits
 widget: ab.features
 weight: 30
