@@ -1,12 +1,9 @@
 ---
 slug: intro
-widget: ab.features
 weight: 10
+widget: ab.features
 active: true
-
-title: Intro
-
-subtitle: What is AlphaBiz?
-
+title: 介绍
+subtitle: AlphaBiz 是什么？
 ---
-AlphaBiz(AB) is a completely decentralized digital content sharing software platform based on blockchain technology, network acceleration technology and content distribution technology. Digital content publishers can make full use of redundant idle bandwidth resources and high-quality digital content to gain revenue. Downloaders can use AB to exchange high-quality digital products. Joining the AB Rewards Program (the users) can also continue to earn AB revenue through sharing resources. This will make downloading of high-quality, high-value digital content globally more enjoyable and free. It is hailed as the world's first true blockchain application with high frequency and high demand.
+AlphaBiz（AB）是一个基于区块链技术、网络加速技术和内容分发技术打造的完全去中心化的数字内容共享平台，数字内容发行人可充分利用冗余闲置的带宽资源和高品质的数字内容获得收益，下载者可用AB兑换高品质的数字商品，加入AB奖励计划还能通过共享资源持续获得AB收益，使得全球追求高品质、高价值数字内容的用户在下载数字内容时更畅快、更自由。AlphaBiz被誉为全球首个具有高频强刚需的真区块链应用。
