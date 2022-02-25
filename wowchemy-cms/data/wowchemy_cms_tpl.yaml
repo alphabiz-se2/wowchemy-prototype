@@ -330,7 +330,6 @@ common:
     folder: 'content'
     slug: '{{fields.slug}}'
     identifier_field: "widget_id"
-    label_singular: '组件'
     i18n: true
     create: true
     delete: true
