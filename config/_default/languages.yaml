@@ -10,4 +10,9 @@ en:
 zh:
   languageCode: zh
   title: Alphabiz 中文官网
-  contentDir: content/zh
+  contentDir: content/zh-hans
+
+zh-hant:
+  languageCode: zh-hant
+  title: Alphabiz 中文官網
+  contentDir: content/zh-hant
