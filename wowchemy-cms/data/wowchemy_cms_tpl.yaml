@@ -92,7 +92,7 @@ common:
     i18n: duplicate
     widget: select
     default: blink
-    options: ["blink", "hero", "ab.features", "contact"]
+    options: ["blink", "hero", "pages", "ab.features", "contact"]
     hint: "选择使用的组件的 wowchemy 模板"
   base-widget-active: &base-widget-active
     label: "启用组件"
@@ -180,7 +180,7 @@ common:
   ##   content (recent-blogs)
   #########################
   base-widget-content: &base-widget-content
-    label: '内容参数'
+    label: '【pages】内容参数'
     name: content
     i18n: true
     widget: object
@@ -212,10 +212,46 @@ common:
             widget: list
             collapsed: true
             required: false
+          - label: 标签
+            name: tag
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 分类
+            name: category
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 发布类型
+            name: publication_type
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 作者
+            name: author
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
 
-
-
-
+          - label: 排除featured
+            name: exclude_featured
+            i18n: duplicate
+            widget: boolean
+            required: false
+          - label: 排除future
+            name: exclude_future
+            i18n: duplicate
+            widget: boolean
+            required: false
+          - label: 排除past
+            name: exclude_past
+            i18n: duplicate
+            widget: boolean
+            required: false
 
   #########################
   ##   design
