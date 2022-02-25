@@ -5,6 +5,7 @@ weight: 10
 widget: hero
 active: true
 title: "**Redefining Network Ecology of Data Transmission Based on Blockchain**"
+subtitle: ""
 hero:
   hero_media: app_img_dark.jpg
   hero_style:
@@ -17,6 +18,8 @@ hero:
   cta_alt:
     label: View Documentation
     url: https://github.com/tanshuai/alphabiz/wiki
+  cta_note:
+    label: cta-note
 design:
   background:
     image: background_earth.png
@@ -24,6 +27,7 @@ design:
     image_position: top
     image_opacity: 0.6
     image_parallax: false
+    text_color_light: false
   css_class: fullscreen
 ---
 _Enabling the commercialization of digital content to be free, fair and efficient_
