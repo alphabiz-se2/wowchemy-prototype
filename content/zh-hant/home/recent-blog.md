@@ -3,6 +3,7 @@ slug: recent-blog
 weight: 40
 widget: pages
 active: true
+title: 最新資訊
 content:
   count: 3
   filters:
