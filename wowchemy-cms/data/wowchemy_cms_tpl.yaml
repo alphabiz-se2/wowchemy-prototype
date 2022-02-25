@@ -92,7 +92,7 @@ common:
     i18n: duplicate
     widget: select
     default: blink
-    options: ["blink", "hero", "ab.features"]
+    options: ["blink", "hero", "ab.features", "contact"]
     hint: "选择使用的组件的 wowchemy 模板"
   base-widget-active: &base-widget-active
     label: "启用组件"
