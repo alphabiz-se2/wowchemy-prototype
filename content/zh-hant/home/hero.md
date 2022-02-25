@@ -18,7 +18,7 @@ design:
     gradient_angle: null
     image_size: contain
     image_opacity: 0.6
-    text_color_light: unset
+    text_color_light: null
     gradient_end: null
     image_position: top
     gradient_start: null
