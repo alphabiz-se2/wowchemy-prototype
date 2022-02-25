@@ -199,7 +199,7 @@ common:
         widget: "object"
         required: false
         fields:
-          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: select, options: ['true', 'unset', 'false'], default: 'unset'}
+          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: select, options: ['true', 'false'], default: 'unset'}
           # solid color
           - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
           # gradient color
