@@ -1,4 +1,5 @@
 ---
+slug: hero
 title: "**基于区块链重新定义数据传输网络生态**"
 hero:
   cta:

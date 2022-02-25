@@ -5,7 +5,7 @@ weight: 10
 widget: hero
 active: true
 title: "**Redefining Network Ecology of Data Transmission Based on Blockchain**"
-subtitle: ""
+subtitle: shit
 hero:
   hero_media: app_img_dark.jpg
   hero_style:
