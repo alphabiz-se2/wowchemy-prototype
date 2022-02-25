@@ -18,7 +18,5 @@ content:
   order: desc
 design:
   columns: "2"
-  background:
-    text_color_light: unset
   view: 2
 ---

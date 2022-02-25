@@ -4,6 +4,7 @@ weight: 40
 widget: pages
 active: true
 title: 最新資訊
+subtitle: ""
 content:
   count: 3
   filters:
@@ -14,6 +15,8 @@ content:
     exclude_featured: null
     exclude_future: null
     exclude_past: null
+    folders:
+      - blog
   order: desc
 design:
   columns: "2"
