@@ -1,6 +1,6 @@
 ---
 belong: home
-slug: recent_blog
+slug: recent-blog
 widget: pages
 weight: 40
 active: true
