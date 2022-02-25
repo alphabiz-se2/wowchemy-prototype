@@ -231,6 +231,7 @@ common:
     folder: 'content'
     slug: '{{fields.slug}}'
     identifier_field: "widget_id"
+    label_singular: '组件'
     i18n: true
     create: true
     delete: true
@@ -259,14 +260,14 @@ collections:
   - <<: *base-widget
     <<: *base-widget-fields
     name: home
-    label: I-HOME
+    label: '主页'
     path: 'home/{{slug}}'
     filter: {field: "belong", value: "home"}
 
   - <<: *base-widget
     <<: *base-widget-fields
     name: about
-    label: I-ABOUT
+    label: '关于'
     path: 'about/{{slug}}'
     filter: {field: "belong", value: "about"}
 
