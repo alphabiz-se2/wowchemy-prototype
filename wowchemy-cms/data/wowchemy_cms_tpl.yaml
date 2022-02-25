@@ -201,6 +201,7 @@ common:
         i18n: duplicate
         widget: select
         options: [desc, asc]
+        default: desc
         required: false
       - label: 条件筛选
         name: filters
@@ -244,16 +245,19 @@ common:
             name: exclude_featured
             i18n: duplicate
             widget: boolean
+            default: false
             required: false
           - label: 排除future
             name: exclude_future
             i18n: duplicate
             widget: boolean
+            default: false
             required: false
           - label: 排除past
             name: exclude_past
             i18n: duplicate
             widget: boolean
+            default: false
             required: false
 
   #########################
