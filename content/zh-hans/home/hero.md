@@ -15,21 +15,14 @@ hero:
     label: 查看文档
   hero_media: app_img_dark.jpg
 design:
-  columns: "2"
   background:
-    image_darken: ""
-    color: ""
-    gradient_angle: 0
-    image_size: contain
-    image_opacity: 0.6
-    text_color_light: unset
-    gradient_end: ""
-    image_position: top
-    gradient_start: ""
     image: background_earth.png
+    image_size: contain
+    image_position: top
+    image_opacity: 0.6
     image_parallax: false
+    text_color_light: unset
   css_class: fullscreen
-  css_style: null
 ---
 _让数据内容的商品化过程，从此自由、高效、公平_
 {style="font-size: 1rem; font-weight: bold; opacity: 0.7"}

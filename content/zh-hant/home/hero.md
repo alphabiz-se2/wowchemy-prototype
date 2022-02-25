@@ -15,21 +15,14 @@ hero:
     label: 查看檔案
   hero_media: app_img_dark.jpg
 design:
-  columns: null
   background:
-    image_darken: null
-    color: null
-    gradient_angle: null
-    image_size: contain
-    image_opacity: 0.6
-    text_color_light: null
-    gradient_end: null
-    image_position: top
-    gradient_start: null
     image: background_earth.png
+    image_size: contain
+    image_position: top
+    image_opacity: 0.6
     image_parallax: false
+    text_color_light: unset
   css_class: fullscreen
-  css_style: null
 ---
 _使數位內容的商業化變得自由、公平和高效_
 {style="font-size: 1rem; font-weight: bold; opacity: 0.7"}
