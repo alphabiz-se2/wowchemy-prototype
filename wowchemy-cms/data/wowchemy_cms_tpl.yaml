@@ -17,144 +17,6 @@ i18n:
   default_locale: en
 
 common:
-  base: &base-collection
-    create: true
-    delete: true
-    # [Folders Env]
-    media_folder: '/assets/media'
-    public_folder: ''
-    slug: '{{fields.slug}}'
-    path: '{{slug}}'
-    identifier_field: "slug"
-    summary: '{{slug}} ({{dirname}}/{{filename}}.{{extension}})'
-    filter: { field: "type" }
-    sortable_fields: ["weight"]
-    fields:
-      - label: "ID"
-        name: slug
-        required: true
-        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
-        hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
-      - label: "启用组件"
-        name: active
-        widget: boolean
-        default: true
-      - label: "序列"
-        name: weight
-        widget: number
-        default: 10
-        value_type: int
-        min: 0
-        max: 1001
-        step: 10
-        hint: "组件显示的顺序，数值低的组件将排列在前面"
-      - label: "组件类型"
-        name: widget
-        widget: select
-        default: blink
-        options: ["blink", "hero", "ab.features"]
-        hint: "该字段对应 wowchemy 的模板"
-
-      - label: "标题"
-        name: title
-        required: true
-      - label: "副标题"
-        name: subtitle
-      - label: "内容"
-        name: body
-        widget: markdown
-        required: false
-
-      #########################
-      #   ab.features fields
-      #########################
-      - label: "【ab.features】"
-        label_singular: "特性"
-        name: features
-        widget: list
-        collapsed: true
-        fields:
-          - {label: "名称", name: name, widget: string}
-          - {label: "描述", name: description, widget: string}
-
-      #########################
-      #   hero fields
-      #########################
-      - label: "【hero】"
-        name: hero
-        widget: object
-        collapsed: true
-        fields:
-          - label: "按钮"
-            name: cta
-            widget: object
-            fields:
-              - {label: "名称", name: label}
-              - {label: "链接", name: url}
-              - {label: "图标包", name: icon_pack}
-              - {label: "图标", name: icon}
-          - label: "链接"
-            name: cta_alt
-            widget: object
-            fields:
-              - {label: "名称", name: label}
-              - {label: "链接", name: url}
-          - label: "文本"
-            name: cta_note
-            widget: object
-            fields:
-              - {label: "内容", name: label}
-          - label: "图片"
-            name: hero_media
-            widget: image
-            media_library:
-              config:
-                multiple: false
-
-      #########################
-      #   design
-      #########################
-      - label: "组件样式"
-        name: "design"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - label: "内容布局"
-            name: columns
-            widget: "select"
-            options: ['1', '2']
-            default: "2"
-            required: false
-            hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
-          - label: "组件背景"
-            name: "background"
-            widget: "object"
-            required: false
-            fields:
-              - {label: '固定颜色背景', name: color, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: '渐变颜色背景1', name: gradient_start, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: '渐变颜色背景2', name: gradient_end, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: "使用白色文本", name: text_color_light, required: false, widget: boolean, default: false}
-              - label: 图片背景
-                name: image
-                widget: image
-                required: false
-                # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
-                media_folder: '/assets/media'
-                public_folder: ''
-                media_library:
-                  config:
-                    multiple: false
-              - label: "图片不透明度"
-                name: "image_darken"
-                widget: "number"
-                default: 0.0
-                value_type: "float"
-                min: 0.0
-                max: 1.0
-                step: 0.1
-                required: false
 
   post: &base-post
     create: true
@@ -199,12 +61,173 @@ common:
           - {label: "设置封面焦点", name: focal_point, widget: string, required: false, default: "Smart", hint: "可选项: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight"}
           - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
 
-collections:
-  - name: iAbout
-    label: I-ABOUT
-    path: 'about/{{slug}}'
-    filter: {field: "belong", value: "about"}
+  base-widget-belong: &base-widget-belong
+    label: "归属页面"
+    name: belong
+    i18n: false
+    widget: select
+    options: ["home", "blog", "about"]
+    hint: "选择组件所应用的页面"
+  base-widget-slug: &base-widget-slug
+    label: "ID"
+    name: slug
+    i18n: duplicate
+    widget: string
+    pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
+    hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
+  base-widget-weight: &base-widget-weight
+    label: "序列"
+    name: weight
+    i18n: duplicate
+    widget: number
+    default: 10
+    value_type: int
+    min: 0
+    max: 1001
+    step: 10
+    hint: "组件显示的顺序，数值低的组件将排列在前面"
+  base-widget-widget: &base-widget-widget
+    label: "组件类型"
+    name: widget
+    i18n: duplicate
+    widget: select
+    default: blink
+    options: ["blink", "hero", "ab.features"]
+    hint: "选择使用的组件的 wowchemy 模板"
+  base-widget-active: &base-widget-active
+    label: "启用组件"
+    name: active
+    i18n: duplicate
+    widget: boolean
+    default: true
+  base-widget-title: &base-widget-title
+    label: "标题"
+    name: title
+    i18n: true
+    required: false
+  base-widget-subtitle: &base-widget-subtitle
+    label: "副标题"
+    name: subtitle
+    i18n: true
+    required: false
+  base-widget-body: &base-widget-body
+    label: "内容"
+    name: body
+    i18n: true
+    required: false
+    widget: markdown
 
+  #########################
+  ##   ab.features fields
+  #########################
+  base-widget-ab-features: &base-widget-ab-features
+    label: "【ab.features】"
+    label_singular: "特性"
+    name: features
+    i18n: true
+    required: false
+    widget: list
+    collapsed: true
+    fields:
+      - {label: "名称", name: name, i18n: true, widget: string}
+      - {label: "描述", name: description, i18n: true, widget: string}
+
+  #########################
+  ##   hero fields
+  #########################
+  base-widget-hero: &base-widget-hero
+    label: "【hero】"
+    name: hero
+    i18n: true
+    required: false
+    widget: object
+    collapsed: true
+    fields:
+      - label: "按钮"
+        name: cta
+        i18n: true
+        widget: object
+        fields:
+          - {label: "名称", name: label, i18n: true, required: false}
+          - {label: "链接", name: url, i18n: duplicate, required: false}
+          - {label: "图标包", name: icon_pack, i18n: duplicate, required: false}
+          - {label: "图标", name: icon, i18n: duplicate, required: false}
+      - label: "链接"
+        name: cta_alt
+        i18n: true
+        widget: object
+        fields:
+          - {label: "名称", name: label, i18n: true, required: false}
+          - {label: "链接", name: url, i18n: duplicate, required: false}
+      - label: "文本"
+        name: cta_note
+        i18n: true
+        widget: object
+        fields:
+          - {label: "内容", name: label, i18n: true, required: false}
+      - label: "图片"
+        name: hero_media
+        i18n: duplicate
+        required: false
+        widget: image
+        media_library:
+          config:
+            multiple: false
+
+  #########################
+  ##   design
+  #########################
+  base-widget-design: &base-widget-design
+    label: "组件样式"
+    name: "design"
+    i18n: true
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - label: "内容布局"
+        name: columns
+        i18n: duplicate
+        widget: "select"
+        options: ['1', '2']
+        default: "2"
+        required: false
+        hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
+      - label: "组件背景"
+        name: "background"
+        i18n: true
+        widget: "object"
+        required: false
+        fields:
+          - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+          - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+          - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
+          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: boolean, default: false}
+          - label: 图片背景
+            name: image
+            i18n: duplicate
+            widget: image
+            required: false
+            # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
+            media_folder: '/assets/media'
+            public_folder: ''
+            media_library:
+              config:
+                multiple: false
+          - label: "图片不透明度"
+            name: "image_darken"
+            i18n: duplicate
+            widget: "number"
+            default: 0.0
+            value_type: "float"
+            min: 0.0
+            max: 1.0
+            step: 0.1
+            required: false
+
+  ###################################################################
+
+  base-widget: &base-widget
     folder: 'content'
     slug: '{{fields.slug}}'
     identifier_field: "widget_id"
@@ -216,161 +239,36 @@ collections:
     # [Folders Env]
     media_folder: '/assets/media'
     public_folder: ''
+  base-widget-fields: &base-widget-fields
     fields:
-      - label: "归属页面"
-        name: belong
-        i18n: false
-        widget: select
-        options: ["home", "about"]
-        hint: "选择组件所应用的页面"
-      - label: "ID"
-        name: slug
-        i18n: duplicate
-        widget: string
-        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
-        hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
-      - label: "序列"
-        name: weight
-        i18n: duplicate
-        widget: number
-        default: 10
-        value_type: int
-        min: 0
-        max: 1001
-        step: 10
-        hint: "组件显示的顺序，数值低的组件将排列在前面"
-      - label: "组件类型"
-        name: widget
-        i18n: duplicate
-        widget: select
-        default: blink
-        options: ["blink", "hero", "ab.features"]
-        hint: "选择使用的组件的 wowchemy 模板"
-      - label: "启用组件"
-        name: active
-        i18n: duplicate
-        widget: boolean
-        default: true
+      - <<: *base-widget-belong
+      - <<: *base-widget-slug
+      - <<: *base-widget-weight
+      - <<: *base-widget-widget
+      - <<: *base-widget-active
+      - <<: *base-widget-title
+      - <<: *base-widget-subtitle
+      - <<: *base-widget-body
 
-      - label: "标题"
-        name: title
-        i18n: true
-        required: false
-      - label: "副标题"
-        name: subtitle
-        i18n: true
-        required: false
-      - label: "内容"
-        name: body
-        i18n: true
-        required: false
-        widget: markdown
+      - <<: *base-widget-ab-features
+      - <<: *base-widget-hero
+      - <<: *base-widget-design
 
 
-      #########################
-      ##   ab.features fields
-      #########################
-      - label: "【ab.features】"
-        label_singular: "特性"
-        name: features
-        i18n: true
-        required: false
-        widget: list
-        collapsed: true
-        fields:
-          - {label: "名称", name: name, i18n: true, widget: string}
-          - {label: "描述", name: description, i18n: true, widget: string}
+collections:
+  - <<: *base-widget
+    <<: *base-widget-fields
+    name: home
+    label: I-HOME
+    path: 'home/{{slug}}'
+    filter: {field: "belong", value: "home"}
 
-      #########################
-      #   hero fields
-      #########################
-      - label: "【hero】"
-        name: hero
-        i18n: true
-        required: false
-        widget: object
-        collapsed: true
-        fields:
-          - label: "按钮"
-            name: cta
-            i18n: true
-            widget: object
-            fields:
-              - {label: "名称", name: label, i18n: true, required: false}
-              - {label: "链接", name: url, i18n: duplicate, required: false}
-              - {label: "图标包", name: icon_pack, i18n: duplicate, required: false}
-              - {label: "图标", name: icon, i18n: duplicate, required: false}
-          - label: "链接"
-            name: cta_alt
-            i18n: true
-            widget: object
-            fields:
-              - {label: "名称", name: label, i18n: true, required: false}
-              - {label: "链接", name: url, i18n: duplicate, required: false}
-          - label: "文本"
-            name: cta_note
-            i18n: true
-            widget: object
-            fields:
-              - {label: "内容", name: label, i18n: true, required: false}
-          - label: "图片"
-            name: hero_media
-            i18n: duplicate
-            required: false
-            widget: image
-            media_library:
-              config:
-                multiple: false
-
-      #########################
-      #   design
-      #########################
-      - label: "组件样式"
-        name: "design"
-        i18n: true
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - label: "内容布局"
-            name: columns
-            i18n: duplicate
-            widget: "select"
-            options: ['1', '2']
-            default: "2"
-            required: false
-            hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
-          - label: "组件背景"
-            name: "background"
-            i18n: true
-            widget: "object"
-            required: false
-            fields:
-              - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false}
-              - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: boolean, default: false}
-              - label: 图片背景
-                name: image
-                i18n: duplicate
-                widget: image
-                required: false
-                # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
-                media_folder: '/assets/media'
-                public_folder: ''
-                media_library:
-                  config:
-                    multiple: false
-              - label: "图片不透明度"
-                name: "image_darken"
-                i18n: duplicate
-                widget: "number"
-                default: 0.0
-                value_type: "float"
-                min: 0.0
-                max: 1.0
-                step: 0.1
-                required: false
+  - <<: *base-widget
+    <<: *base-widget-fields
+    name: about
+    label: I-ABOUT
+    path: 'about/{{slug}}'
+    filter: {field: "belong", value: "about"}
 
   - name: iposts
     label: iPosts
@@ -391,29 +289,29 @@ collections:
         i18n: true
         widget: markdown
 
-  - <<: *base-collection
-    name: home-en
-    label: 主页(en)
-    label_singular: 组件
-    folder: 'content/en/home'
-
-  - <<: *base-collection
-    name: home-zh
-    label: 主页(zh)
-    label_singular: 组件
-    folder: 'content/zh/home'
-
-  - <<: *base-collection
-    name: about-en
-    label: 关于(en)
-    label_singular: 组件
-    folder: 'content/en/about'
-
-  - <<: *base-collection
-    name: about-zh
-    label: 关于(zh)
-    label_singular: 组件
-    folder: 'content/zh/about'
+#  - <<: *base-collection
+#    name: home-en
+#    label: 主页(en)
+#    label_singular: 组件
+#    folder: 'content/en/home'
+#
+#  - <<: *base-collection
+#    name: home-zh
+#    label: 主页(zh)
+#    label_singular: 组件
+#    folder: 'content/zh/home'
+#
+#  - <<: *base-collection
+#    name: about-en
+#    label: 关于(en)
+#    label_singular: 组件
+#    folder: 'content/en/about'
+#
+#  - <<: *base-collection
+#    name: about-zh
+#    label: 关于(zh)
+#    label_singular: 组件
+#    folder: 'content/zh/about'
 
   - <<: *base-post
     name: blog-en
