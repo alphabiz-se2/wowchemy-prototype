@@ -15,17 +15,17 @@ hero:
     label: 查看文档
   hero_media: app_img_dark.jpg
 design:
-  columns: null
+  columns: "2"
   background:
-    image_darken: null
-    color: null
-    gradient_angle: null
+    image_darken: ""
+    color: ""
+    gradient_angle: 0
     image_size: contain
     image_opacity: 0.6
-    text_color_light: null
-    gradient_end: null
+    text_color_light: unset
+    gradient_end: ""
     image_position: top
-    gradient_start: null
+    gradient_start: ""
     image: background_earth.png
     image_parallax: false
   css_class: fullscreen
