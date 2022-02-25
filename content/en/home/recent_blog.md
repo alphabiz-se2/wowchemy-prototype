@@ -1,5 +1,5 @@
 ---
-language: en
+belong: home
 slug: recent_blog
 widget: pages
 weight: 40

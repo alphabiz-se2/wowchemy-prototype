@@ -177,6 +177,47 @@ common:
             multiple: false
 
   #########################
+  ##   content (recent-blogs)
+  #########################
+  base-widget-content: &base-widget-content
+    label: '内容参数'
+    name: content
+    i18n: true
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - label: 显示数量
+        name: count
+        i18n: duplicate
+        widget: number
+        default: 3
+        reqiured: false
+      - label: 排序方式
+        name: order
+        i18n: duplicate
+        widget: select
+        options: [desc, asc]
+        reqiured: false
+      - label: 条件筛选
+        name: filters
+        i18n: true
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - label: 筛选文件夹
+            name: folders
+            i18n: true
+            widget: list
+            collapsed: true
+            required: false
+
+
+
+
+
+  #########################
   ##   design
   #########################
   base-widget-design: &base-widget-design
@@ -195,6 +236,13 @@ common:
         default: "2"
         required: false
         hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
+      - label: "内容视图"
+        name: view
+        i18n: duplicate
+        widget: "select"
+        options: [1, 2, 3]
+        required: false
+        hint: "内容项的显示类型，1为列表，2为文本，3为卡片。"
       - label: "组件背景"
         name: "background"
         i18n: true
@@ -263,6 +311,7 @@ common:
       - <<: *base-widget-subtitle
       - <<: *base-widget-body
 
+      - <<: *base-widget-content
       - <<: *base-widget-ab-features
       - <<: *base-widget-hero
       - <<: *base-widget-design
