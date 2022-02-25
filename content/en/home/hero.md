@@ -27,7 +27,7 @@ design:
     image_position: top
     image_opacity: 0.6
     image_parallax: false
-    text_color_light: unset
+    text_color_light: "false"
   css_class: fullscreen
 ---
 _Enabling the commercialization of digital content to be free, fair and efficient_
