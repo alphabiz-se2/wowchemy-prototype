@@ -19,7 +19,7 @@ hero:
     label: View Documentation
     url: https://github.com/tanshuai/alphabiz/wiki
   cta_note:
-    label: cta-note
+    label: ""
 design:
   background:
     image: background_earth.png
