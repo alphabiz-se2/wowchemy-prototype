@@ -188,6 +188,18 @@ common:
         media_library:
           config:
             multiple: false
+      - label: 样式
+        name: hero_style
+        i18n: true
+        widget: object
+        required: false
+        fields:
+          - label: 启用图片圆角
+            name: media_rounded
+            widget: boolean
+            i18n: duplicate
+            required: false
+            default: true
 
   #########################
   ##   content (recent-blogs)
