@@ -14,6 +14,8 @@ hero:
     url: https://github.com/tanshuai/alphabiz/wiki
     label: 查看文档
   hero_media: app_img_dark.jpg
+  hero_style:
+    media_rounded: true
 design:
   background:
     image: background_earth.png
