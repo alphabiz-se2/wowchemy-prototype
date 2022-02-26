@@ -453,14 +453,14 @@ common:
     widget: object
     i18n: true
     fields:
-      - label: '上传一张名为 `featured.jpg/png` 的图片'
+      - label: '上传一张名为 `featured.jpg/png` 的图片 {{dirname}}'
         name: filename
         widget: image
         i18n: true
-        default: 
+        default:
         required: false
-        media_folder: '/assets/media/blog'
-        public_folder:
+        media_folder: 'assets/{{dirname}}'
+        public_folder: '{{dirname}}'
         media_library:
           config:
             multiple: false
