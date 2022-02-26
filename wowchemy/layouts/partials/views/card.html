@@ -46,6 +46,17 @@
   {{ end }}
 
   {{ $resource := ($item.Resources.ByType "image").GetMatch "*featured*" }}
+
+  {{ if not $resource }}
+    {{ $commonDir := (path.Join "content" (path.Dir $item.Path)) }}
+    {{ if os.FileExists $commonDir }}
+      {{ $testImg := (path.Join $commonDir "featured_png.png") }}
+      {{ warnf "\t\t%s | %s" $commonDir (resources.Get $testImg) }}
+    {{ end }}
+  {{ end }}
+
+  {{ warnf "\t【%s】\t%s\t\t | %s | %s" (site.LanguageCode) ($item.Params.slug) ($item.Resources.ByType "image") (path.Dir $item.Path) }}
+
   {{ $anchor := $item.Params.image.focal_point | default "Smart" }}
   {{ with $resource }}
   {{ $image := .Fill (printf "808x455 webp %s" $anchor) }}
