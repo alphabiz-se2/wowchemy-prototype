@@ -75,6 +75,19 @@
   </div>
   <div class="ml-3">
     {{ $resource := ($item.Resources.ByType "image").GetMatch "*featured*" }}
+
+    {{ if not $resource }}
+      {{ $folderDir := (path.Join "media" (path.Dir $item.Path)) }}
+      {{ if os.FileExists (path.Join "assets" $folderDir) }}
+        {{ $imagePath := $item.Params.image.filename }}
+        {{ if $imagePath }}
+          {{ $resource =  resources.Get (path.Join $folderDir (path.Base $imagePath))}}
+        {{ else }}
+          {{ $resource =  resources.Get (path.Join $folderDir "featured.png")}}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
     {{ with $resource }}
     {{ $image := .Resize "150x webp" }}
     <a href="{{$link}}" {{ $target | safeHTMLAttr }}>

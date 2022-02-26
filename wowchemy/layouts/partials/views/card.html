@@ -48,14 +48,16 @@
   {{ $resource := ($item.Resources.ByType "image").GetMatch "*featured*" }}
 
   {{ if not $resource }}
-    {{ $commonDir := (path.Join "content" (path.Dir $item.Path)) }}
-    {{ if os.FileExists $commonDir }}
-      {{ $testImg := (path.Join $commonDir "featured_png.png") }}
-      {{ warnf "\t\t%s | %s" $commonDir (resources.Get $testImg) }}
+    {{ $folderDir := (path.Join "media" (path.Dir $item.Path)) }}
+    {{ if os.FileExists (path.Join "assets" $folderDir) }}
+      {{ $imagePath := $item.Params.image.filename }}
+      {{ if $imagePath }}
+        {{ $resource =  resources.Get (path.Join $folderDir (path.Base $imagePath))}}
+      {{ else }}
+        {{ $resource =  resources.Get (path.Join $folderDir "featured.png")}}
+      {{ end }}
     {{ end }}
   {{ end }}
-
-  {{ warnf "\t【%s】\t%s\t\t | %s | %s" (site.LanguageCode) ($item.Params.slug) ($item.Resources.ByType "image") (path.Dir $item.Path) }}
 
   {{ $anchor := $item.Params.image.focal_point | default "Smart" }}
   {{ with $resource }}

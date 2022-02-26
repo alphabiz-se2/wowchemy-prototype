@@ -1,5 +1,18 @@
 {{ $page := . }}
 {{ $featured := (.Resources.ByType "image").GetMatch "*featured*" }}
+
+{{ if not $featured }}
+  {{ $folderDir := (path.Join "media" (path.Dir $page.Path)) }}
+  {{ if os.FileExists (path.Join "assets" $folderDir) }}
+    {{ $imagePath := $page.Params.image.filename }}
+    {{ if $imagePath }}
+      {{ $featured =  resources.Get (path.Join $folderDir (path.Base $imagePath))}}
+    {{ else }}
+      {{ $featured =  resources.Get (path.Join $folderDir "featured.png")}}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ $anchor := $page.Params.image.focal_point | default "Smart" }}
 
 {{/* Set default titles for node pages */}}
