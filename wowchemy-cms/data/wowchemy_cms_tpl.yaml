@@ -459,7 +459,7 @@ common:
         i18n: true
         default:
         required: false
-        media_folder: 'assets/{{dirname}}'
+        media_folder: '/assets/{{dirname}}'
         public_folder: '{{dirname}}'
         media_library:
           config:
@@ -506,12 +506,14 @@ common:
   base-blog: &base-blog
     label: 博客
     name: blog
-    label_singular: 博文
     folder: 'content'
     slug: '{{fields.slug}}'
+    label_singular: 博文
     path: 'blog/{{slug}}/index'
     filter: {field: "belong", value: "blog"}
     summary: '{{fields.slug}}'
+    media_folder: '/assets/media'
+    public_folder:
     i18n: true
     create: true
     delete: true
