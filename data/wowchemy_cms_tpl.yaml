@@ -1,0 +1,1136 @@
+locale: 'zh_Hans'
+
+backend:
+  name: git-gateway
+  branch: main
+  squash_merges: true
+media_folder: 'assets/media'
+public_folder: '/media'
+
+i18n:
+  # Required and can be one of multiple_folders, multiple_files or single_file
+  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
+  # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
+  # single_file - persists a single file in `<folder>/<slug>.<extension>`
+  structure: multiple_folders
+  locales: [en, zh-hans, zh-hant]
+  default_locale: en
+
+common:
+
+  post: &base-post
+    create: true
+    delete: true
+    slug: '{{fields.slug}}'
+    path: '{{slug}}/index'
+    identifier_field: "slug"
+    summary: '[{{slug}}] {{fields.title}}'
+    filter: {field: "cms_exclude"}
+    fields:  # The fields each document in this collection have
+      - label: "ID"
+        name: slug
+        required: true
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
+        hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "副标题", name: "subtitle", widget: "string", required: false}
+      - {label: "内容", name: "body", widget: "markdown"}
+      - {label: "发布时间", name: "date", widget: "datetime"}
+      - {label: "概述", name: "summary", widget: "markdown", required: false}
+      - {label: "作为草稿", name: "draft", widget: "boolean", required: false, default: false}
+      - {label: "作为特点", name: "featured", widget: "boolean", required: false, default: false}
+      - {label: "作者", name: "authors", widget: "list", required: false}
+      - {label: "标签", name: "tags", widget: "list", required: false}
+      - {label: "分类", name: "categories", widget: "list", required: false}
+      - {label: "项目", name: "projects", widget: "list", required: false}
+      - label: "封面"
+        name: "image"
+        required: false
+        widget: object
+        fields:
+          - label: "上传一张名为 `featured.jpg/png` 的图片"
+            name: "filename"
+            widget: "image"
+            default: "featured"
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - {label: "封面标题", name: caption, widget: string, required: false}
+          - {label: "封面描述文本", name: alt_text, widget: string, required: false}
+          - {label: "设置封面焦点", name: focal_point, widget: string, required: false, default: "Smart", hint: "可选项: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight"}
+          - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
+
+  ###################################################################
+  ##                        widget fields                          ##
+  ###################################################################
+
+  base-widget-belong: &base-widget-belong
+    label: "归属页面"
+    name: belong
+    i18n: false
+    widget: select
+    options: ["home", "blog", "about"]
+    required: true
+    hint: "选择组件所应用的页面"
+  base-widget-slug: &base-widget-slug
+    label: "ID"
+    name: slug
+    i18n: duplicate
+    widget: string
+    required: true
+    pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
+    hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
+  base-widget-weight: &base-widget-weight
+    label: "序列"
+    name: weight
+    i18n: duplicate
+    widget: number
+    required: true
+    default: 10
+    value_type: int
+    min: 0
+    max: 1001
+    step: 10
+    hint: "组件显示的顺序，数值低的组件将排列在前面"
+  base-widget-widget: &base-widget-widget
+    label: "组件类型"
+    name: widget
+    i18n: duplicate
+    widget: select
+    required: true
+    default: 'ab.features'
+    options: ["hero", "pages", "ab.features", "contact"]
+    hint: "选择使用的组件的 wowchemy 模板"
+  base-widget-active: &base-widget-active
+    label: "启用组件"
+    name: active
+    i18n: duplicate
+    widget: boolean
+    required: true
+    default: true
+  base-widget-title: &base-widget-title
+    label: "标题"
+    name: title
+    widget: string
+    i18n: true
+    required: true
+  base-widget-subtitle: &base-widget-subtitle
+    label: "副标题"
+    name: subtitle
+    widget: string
+    i18n: true
+    default: ''
+    required: false
+  base-widget-body: &base-widget-body
+    label: "内容"
+    name: body
+    i18n: true
+    required: false
+    widget: markdown
+
+  #########################
+  ##   ab.features fields
+  #########################
+  base-widget-ab-features: &base-widget-ab-features
+    label: "【ab.features】"
+    label_singular: "特性"
+    name: features
+    i18n: true
+    required: false
+    widget: list
+    collapsed: true
+    fields:
+      - {label: "名称", name: name, i18n: true, widget: string}
+      - {label: "描述", name: description, i18n: true, widget: string, required: false, default: ''}
+      - {label: "图标", name: icon, i18n: duplicate, widget: string, required: false, default: ''}
+      - {label: "图标包", name: icon_pack, i18n: duplicate, widget: string, required: false, default: ''}
+
+  #########################
+  ##   hero fields
+  #########################
+  base-widget-hero: &base-widget-hero
+    label: "【hero】"
+    name: hero
+    i18n: true
+    required: false
+    widget: object
+    collapsed: true
+    fields:
+      - label: "按钮"
+        name: cta
+        i18n: true
+        widget: object
+        fields:
+          - {label: "名称", name: label, i18n: true, required: false}
+          - {label: "链接", name: url, i18n: duplicate, required: false}
+          - {label: "图标包", name: icon_pack, i18n: duplicate, required: false, default: ''}
+          - {label: "图标", name: icon, i18n: duplicate, required: false, default: ''}
+      - label: "链接"
+        name: cta_alt
+        i18n: true
+        widget: object
+        fields:
+          - {label: "名称", name: label, i18n: true, required: false, default: ''}
+          - {label: "链接", name: url, i18n: duplicate, required: false, default: ''}
+      - label: "文本"
+        name: cta_note
+        i18n: true
+        widget: object
+        fields:
+          - {label: "内容", name: label, i18n: true, required: false, default: ''}
+      - label: "图片"
+        name: hero_media
+        i18n: duplicate
+        required: false
+        widget: image
+        default: ''
+        media_library:
+          config:
+            multiple: false
+      - label: 样式
+        name: hero_style
+        i18n: true
+        widget: object
+        required: false
+        fields:
+          - label: 启用图片圆角
+            name: media_rounded
+            widget: boolean
+            i18n: duplicate
+            required: false
+            default: true
+
+  #########################
+  ##   content (recent-blogs)
+  #########################
+  base-widget-content: &base-widget-content
+    label: '【pages】内容参数'
+    name: content
+    i18n: true
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - label: 显示数量
+        name: count
+        i18n: duplicate
+        widget: number
+        default: 3
+        required: false
+      - label: 排序方式
+        name: order
+        i18n: duplicate
+        widget: select
+        options: [desc, asc]
+        default: desc
+        required: false
+      - label: 条件筛选
+        name: filters
+        i18n: true
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - label: 筛选文件夹
+            name: folders
+            i18n: true
+            widget: list
+            collapsed: true
+            required: false
+          - label: 标签
+            name: tag
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 分类
+            name: category
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 发布类型
+            name: publication_type
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+          - label: 作者
+            name: author
+            i18n: duplicate
+            widget: string
+            default: ''
+            required: false
+
+          - label: 排除featured
+            name: exclude_featured
+            i18n: duplicate
+            widget: boolean
+            default: false
+            required: false
+          - label: 排除future
+            name: exclude_future
+            i18n: duplicate
+            widget: boolean
+            default: false
+            required: false
+          - label: 排除past
+            name: exclude_past
+            i18n: duplicate
+            widget: boolean
+            default: false
+            required: false
+
+  #########################
+  ##   design
+  #########################
+  base-widget-design: &base-widget-design
+    label: "组件样式"
+    name: "design"
+    i18n: true
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - label: "内容布局"
+        name: columns
+        i18n: duplicate
+        widget: "select"
+        options: ['1', '2']
+        default: "2"
+        required: false
+        hint: "标题与内容的排列方向，1为纵向布局，2为横向布局。"
+      - label: "内容视图"
+        name: view
+        i18n: duplicate
+        widget: "number"
+        value_type: "int"
+        min: 1
+        max: 3
+        step: 1
+        default: 1
+        required: false
+        hint: "内容项的显示类型，1为列表，2为文本，3为卡片。"
+      - label: "组件背景"
+        name: "background"
+        i18n: true
+        widget: "object"
+        required: false
+        fields:
+          - {label: "使用白色文本", name: text_color_light, i18n: duplicate, required: false, widget: select, options: ['true', 'false'], default: 'unset'}
+          # solid color
+          - {label: '固定颜色背景', name: color, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
+          # gradient color
+          - {label: '渐变颜色背景1', name: gradient_start, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
+          - {label: '渐变颜色背景2', name: gradient_end, i18n: duplicate, widget: color, enableAlpha: true, allowInput: true, required: false, default: ''}
+          - {label: '渐变颜色背景角度', name: gradient_angle, i18n: duplicate, widget: number, min: 0, max: 360, step: 1, value_type: "int", required: false, default: 0}
+          # image
+          - label: 图片背景
+            name: image
+            i18n: duplicate
+            widget: image
+            required: false
+            default: ''
+            # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
+            media_folder: '/assets/media'
+            public_folder: ''
+            media_library:
+              config:
+                multiple: false
+          # image options
+          - {label: "图片尺寸缩放", name: "image_size", i18n: duplicate, widget: "select", options: ["contain", "cover", "actual"], required: false, default: 'cover'}
+          - {label: "图片不透明度", name: "image_opacity", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false, default: 1}
+          - {label: "图片明度", name: "image_darken", i18n: duplicate, widget: "number", value_type: "float", min: 0.0, max: 1.0, step: 0.1, required: false}
+          - {label: "图片定位", name: "image_position", i18n: duplicate, widget: "select", options: ["left", "center", "right"], required: false, default: 'center'}
+          - {label: "启用图片视差", name: "image_parallax", i18n: duplicate, widget: "boolean", required: false, default: false}
+      - label: "嵌入class"
+        name: css_class
+        i18n: duplicate
+        widget: string
+        default: ""
+        required: false
+      - label: "嵌入style"
+        name: css_style
+        i18n: duplicate
+        widget: string
+        default: ""
+        required: false
+
+  ###################################################################
+  ##                          blog fields                          ##
+  ###################################################################
+  ##    lastMod:datetime
+  ##    math:boolean
+  ##    diagram:boolean
+  ##    highlight:boolean
+  ##    image.placement:int
+  ###################################################################
+
+  base-blog-date: &base-blog-date
+    label: 发布时间
+    name: date
+    widget: datetime
+    i18n: duplicate
+    required: true
+
+  base-blog-summary: &base-blog-summary
+    label: 概述
+    name: summary
+    widget: markdown
+    i18n: true
+    required: false
+
+  base-blog-draft: &base-blog-draft
+    label: 作为草稿
+    name: draft
+    widget: boolean
+    i18n: duplicate
+    default: false
+    required: false
+
+  base-blog-featured: &base-blog-featured
+    label: 作为特色
+    name: featured
+    widget: boolean
+    i18n: duplicate
+    default: false
+    required: false
+
+  base-blog-authors: &base-blog-authors
+    label: 作者
+    name: authors
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-tags: &base-blog-tags
+    label: 标签
+    name: tags
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-categories: &base-blog-categories
+    label: 分类
+    name: categories
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-projects: &base-blog-projects
+    label: 归属项目
+    name: proejcts
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-caption: &base-blog-caption
+    label: 封面标题
+    name: caption
+    widget: string
+    i18n: true
+    required: false
+    default: ""
+
+  base-blog-alt-text: &base-blog-alt-text
+    label: 封面描述文本
+    name: alt_text
+    widget: string
+    i18n: true
+    required: false
+    default: ""
+
+  base-blog-focal-point: &base-blog-focal-point
+    label: 设置封面焦点
+    name: focal_point
+    widget: select
+    options: [Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight]
+    i18n: duplicate
+    required: false
+    default: Smart
+
+  base-blog-preview-only: &base-blog-preview-only
+    label: 仅作为缩略图
+    name: preview_only
+    widget: boolean
+    i18n: duplicate
+    required: false
+    default: false
+
+  base-blog-image: &base-blog-image
+    label: "封面"
+    name: "image"
+    required: false
+    widget: object
+    i18n: true
+    fields:
+      - label: '上传一张名为 `featured.jpg/png` 的图片'
+        name: filename
+        widget: image
+        i18n: true
+        default:
+        required: false
+        media_folder: '/assets/media/{{dirname}}'
+        public_folder: '/media/{{dirname}}'
+#        media_folder: '/assets/media'
+#        public_folder: '/assets/media'
+        media_library:
+          config:
+            multiple: false
+      - <<: *base-blog-caption
+      - <<: *base-blog-alt-text
+      - <<: *base-blog-focal-point
+      - <<: *base-blog-preview-only
+
+  ###################################################################
+  ###################################################################
+
+  base-widget: &base-widget
+    folder: 'content'
+    slug: '{{fields.slug}}'
+    identifier_field: "widget_id"
+    label_singular: 组件
+    i18n: true
+    create: true
+    delete: true
+    sortable_fields: ["weight"]
+    summary: '[ {{fields.weight}} ] {{fields.slug}}'
+    # [Folders Env]
+    media_folder: '/assets/media'
+    public_folder: ''
+  base-widget-fields: &base-widget-fields
+    fields:
+      - <<: *base-widget-belong
+      - <<: *base-widget-slug
+      - <<: *base-widget-weight
+      - <<: *base-widget-widget
+      - <<: *base-widget-active
+      - <<: *base-widget-title
+      - <<: *base-widget-subtitle
+      - <<: *base-widget-body
+
+      - <<: *base-widget-content
+      - <<: *base-widget-ab-features
+      - <<: *base-widget-hero
+      - <<: *base-widget-design
+
+  ###################################################################
+
+  base-blog: &base-blog
+    label: 博客
+    name: blog
+    folder: 'content'
+    slug: '{{fields.slug}}'
+    label_singular: 博文
+    path: 'blog/{{slug}}/index'
+    filter: {field: "belong", value: "blog"}
+    summary: '{{fields.slug}}'
+    media_folder: '/assets/media/{{dirname}}'
+    public_folder: '/media/{{dirname}}'
+    i18n: true
+    create: true
+    delete: true
+  base-blog-fields: &base-blog-fields
+    fields:
+      - <<: *base-widget-belong
+      - <<: *base-widget-slug
+      - <<: *base-widget-title
+      - <<: *base-widget-subtitle
+      - <<: *base-widget-body
+
+      - <<: *base-blog-date
+      - <<: *base-blog-summary
+      - <<: *base-blog-draft
+      - <<: *base-blog-featured
+      - <<: *base-blog-authors
+      - <<: *base-blog-tags
+      - <<: *base-blog-categories
+      - <<: *base-blog-projects
+
+      - <<: *base-blog-image
+
+  ###################################################################
+
+
+collections:
+  - <<: *base-widget
+    <<: *base-widget-fields
+    name: home
+    label: '主页'
+    path: 'home/{{slug}}'
+    filter: {field: "belong", value: "home"}
+
+  - <<: *base-blog
+    <<: *base-blog-fields
+
+  - <<: *base-widget
+    <<: *base-widget-fields
+    name: about
+    label: '关于'
+    path: 'about/{{slug}}'
+    filter: {field: "belong", value: "about"}
+
+
+
+#  - <<: *base-post
+#    name: blog-en
+#    label: 博客(en)
+#    label_singular: 博文
+#    folder: 'content/en/blog'
+#
+#  - <<: *base-post
+#    name: blog-zh
+#    label: 博客(zh)
+#    label_singular: 博文
+#    folder: 'content/zh/blog'
+
+
+###################################################################
+
+#  - <<: *base-collection
+#    name: home-en
+#    label: 主页(en)
+#    label_singular: 组件
+#    folder: 'content/en/home'
+#
+#  - <<: *base-collection
+#    name: home-zh
+#    label: 主页(zh)
+#    label_singular: 组件
+#    folder: 'content/zh/home'
+#
+#  - <<: *base-collection
+#    name: about-en
+#    label: 关于(en)
+#    label_singular: 组件
+#    folder: 'content/en/about'
+#
+#  - <<: *base-collection
+#    name: about-zh
+#    label: 关于(zh)
+#    label_singular: 组件
+#    folder: 'content/zh/about'
+
+
+#  - name: pages
+#    label: "Pages"
+#    files:
+#      - file: "content/privacy.md"
+#        label: "Privacy Policy"
+#        name: "privacy"
+#        fields:
+#          - {label: "Title", name: "title", widget: "string"}
+#          - {label: "Publish Date", name: "date", widget: "datetime"}
+#          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#          - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#          - label: "Draft"
+#            name: "draft"
+#            required: false
+#            widget: "boolean"
+#            default: false
+#          - {label: "Body", name: "body", widget: "markdown"}
+#      - file: "content/terms.md"
+#        label: "Terms"
+#        name: "terms"
+#        fields:
+#          - {label: "Title", name: "title", widget: "string"}
+#          - {label: "Publish Date", name: "date", widget: "datetime"}
+#          - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#          - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#          - label: "Draft"
+#            name: "draft"
+#            required: false
+#            widget: "boolean"
+#            default: false
+#          - {label: "Body", name: "body", widget: "markdown"}
+
+
+#  - name: tab-test
+#    # [Dashboard]
+#    label: Tab Test # title
+#    label_singular: 'TAB' # button label
+#    description: 'The description is a great place for tone setting, high level information, and editing'
+#    create: true # creatable
+#    delete: true # deletable
+#    # [Folders Env]
+#    media_folder: '/assets/media'
+#    public_folder: ''
+#    # [Content]
+#    folder: 'content/en/about'
+#    slug: '{{fields.slug}}'
+#    path: '{{slug}}'
+#    identifier_field: "slug"
+#    filter: { field: 'language', value: 'en' }
+#    summary: '[{{fields.language}}] {{slug}} ({{dirname}}/{{filename}}.{{extension}})'
+#    fields:
+#      - label: "Slug"
+#        name: "slug"
+#        required: true
+#        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Cannot contain spaces, capital letters, or special characters. You may separate words with dashes and numbers are allowed."]
+#        hint: "This will be used in the URL."
+#    [Filter]
+#    sortable_fields: ['commit_date', 'filename', 'commit_author', 'language']
+#    view_filters:
+#      - {label: "zh", field: "language", pattern: "zh"}
+
+#
+#  - name: home
+#    label: Home
+#    folder: 'content/en/home'
+#    path: '{{slug}}'
+#    # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
+#    media_folder: '/assets/media'
+#    public_folder: ''
+#    summary: '[{{filename}}.{{extension}}]'
+#    identifier_field: "widget_id"
+#    create: true
+#    fields:
+#      - {label: "Widget Type (https://wowchemy.com/docs/page-builder/)", name: "widget", widget: "string", required: true}
+#      - {label: 'Your reference for this widget (e.g. recent-posts)', name: 'widget_id', widget: 'string', default: 'my-widget-123'}
+#      - {label: "Headless?", name: "headless", widget: "hidden", default: true}
+#      - {label: "Widget position", name: "weight", widget: "number", default: 10, value_type: "int", min: 0, max: 1001, step: 10}
+#      - {label: "Title", name: "title", widget: "string", required: false}
+#      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#      - label: "Enabled?"
+#        name: "active"
+#        required: false
+#        widget: "boolean"
+#        default: true
+#      - label: "Widget Style"
+#        name: "design"
+#        widget: "object"
+#        required: false
+#        fields:
+#          - {label: "Columns (options: `1` or `2`)", name: "columns", widget: "string", default: "2", required: false}
+#          - label: "Background"
+#            name: "background"
+#            widget: "object"
+#            required: false
+#            fields:
+#              - {label: 'Solid color', name: 'color', widget: 'color', enableAlpha: true, allowInput: true, required: false}
+#              - {label: 'Gradient start', name: 'gradient_start', widget: 'color', enableAlpha: true, allowInput: true, required: false}
+#              - {label: 'Gradient end', name: 'gradient_end', widget: 'color', enableAlpha: true, allowInput: true, required: false}
+#              - label: "Use a light text color?"
+#                name: "text_color_light"
+#                required: false
+#                widget: "boolean"
+#                default: false
+#              - label: "Image"
+#                name: "image"
+#                widget: "image"
+#                required: false
+#                # When specifying a path on a folder collection, media_folder defaults to an empty string, so make it explicit.
+#                media_folder: '/assets/media'
+#                public_folder: ''
+#                media_library:
+#                  config:
+#                    multiple: false
+#              - label: "Darken the image? (0 is transparent & 1 is opaque)"
+#                name: "image_darken"
+#                widget: "number"
+#                default: 0.0
+#                value_type: "float"
+#                min: 0.0
+#                max: 1.0
+#                step: 0.1
+#                required: false
+#      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+#  - name: blog-en
+#    label: Blogs
+#    label_singular: Blog
+#    folder: 'content/en/post'
+#    path: '{{slug}}/index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields:  # The fields each document in this collection have
+#      - {label: "Title", name: "title", widget: "string"}
+#      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#      - {label: "Body", name: "body", widget: "markdown"}
+#      - {label: "Publish this page on", name: "date", widget: "datetime"}
+#      - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#      - {label: "Draft", name: "draft", widget: "boolean", required: false, default: false}
+#      - {label: "Featured", name: "featured", widget: "boolean", required: false, default: false}
+#      - {label: "Authors", name: "authors", widget: "list", required: false}
+#      - {label: "Tags", name: "tags", widget: "list", required: false}
+#      - {label: "Categories", name: "categories", widget: "list", required: false}
+#      - {label: "Projects", name: "projects", widget: "list", required: false}
+#      - label: "Featured Image"
+#        name: "image"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Upload an image named `featured.jpg/png`"
+#            name: "filename"
+#            widget: "image"
+#            default: "featured"
+#            required: false
+#            media_library:
+#              config:
+#                multiple: false
+#          - {label: Caption, name: caption, widget: string, required: false}
+#          - {label: Description for screen readers, name: alt_text, widget: string, required: false}
+#          - {label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart"}
+#          - {label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false}
+
+#  - name: authors
+#    label: Authors
+#    label_singular: Author
+#    folder: 'content/authors'
+#    path: '{{slug}}/_index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields:  # The fields each document in this collection have
+#      - {label: "Display name (such as your full name)", name: "title", widget: "string"}
+#      - {label: "Position or tagline (such as Professor of AI)", name: "role", widget: "string", required: false}
+#      - label: "Avatar (upload an image named `avatar.jpg/png`)"
+#        name: "avatar_filename"
+#        widget: "image"
+#        default: "avatar"
+#        required: false
+#        media_library:
+#          config:
+#            multiple: false
+#      - {label: "Short biography (shown in author boxes)", name: "bio", widget: "string", required: false}
+#      - {label: "Full biography (shown in About widget)", name: "body", widget: "markdown", required: false}
+#      - label: "Interests (shown in About widget)"
+#        name: "interests"
+#        required: false
+#        widget: "list"
+#      - label: Social links
+#        name: social
+#        required: false
+#        widget: list
+#        fields:
+#          - {label: Link, name: link, widget: string}
+#          - label: Icon pack
+#            name: icon_pack
+#            widget: select
+#            multiple: false
+#            options:
+#              - {label: "None", value: ""}
+#              - {label: "Solid", value: "fas"}
+#              - {label: "Regular", value: "far"}
+#              - {label: "Brand", value: "fab"}
+#              - {label: "Academic", value: "ai"}
+#          - {label: Icon (see https://wowchemy.com/docs/page-builder/#icons), name: icon, widget: string}
+#          - {label: Label (tooltip), name: label, widget: string, required: false}
+#          - label: Display in About widget and...
+#            name: display
+#            widget: object
+#            fields:
+#              - label: "Header (main menu)"
+#                name: "header"
+#                widget: "boolean"
+#                default: false
+#                required: false
+#      - label: "Organizations you belong to or are affiliated with (shown in About widget)"
+#        name: "organizations"
+#        required: false
+#        widget: list
+#        fields:
+#          - {label: Organization, name: name, widget: string, required: true}
+#          - {label: Link, name: url, widget: string, required: false}
+#      - label: "Education"
+#        name: "education"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Courses"
+#            name: "courses"
+#            required: false
+#            widget: list
+#            fields:
+#              - {label: Course, name: course, widget: string, required: true}
+#              - {label: Institution, name: institution, widget: string, required: true}
+#              - {label: Year, name: year, widget: number, value_type: int, required: false}
+#      - {label: "Email (to use a Gravatar.com avatar)", name: "email", widget: "string", required: false}
+#      - label: "Super user (is this the primary site user?)"
+#        name: "superuser"
+#        widget: "boolean"
+#        default: false
+#      - label: "User groups (only for organization websites)"
+#        name: "user_groups"
+#        required: false
+#        widget: "list"
+#  - name: projects
+#    label: Projects
+#    label_singular: Project
+#    folder: 'content/project'
+#    path: '{{slug}}/index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields:  # The fields each document in this collection have
+#      - {label: "Title", name: "title", widget: "string"}
+#      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+#      - {label: "Body", name: "body", widget: "markdown", required: false}
+#      - {label: "Publish this page on", name: "date", widget: "datetime"}
+#      - {label: "Summary", name: "summary", widget: "markdown", required: false}
+#      - label: "Draft"
+#        name: "draft"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Featured"
+#        name: "featured"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Authors"
+#        name: "authors"
+#        required: false
+#        widget: "list"
+#      - label: "Tags"
+#        name: "tags"
+#        required: false
+#        widget: "list"
+#      - label: "Categories"
+#        name: "categories"
+#        required: false
+#        widget: "list"
+#      - {label: "External link (optional - replaces link to project page)", name: "external_link", widget: "string", required: false}
+#      - label: Links
+#        name: links
+#        required: false
+#        widget: list
+#        fields:
+#          - {label: Link, name: url, widget: string}
+#          - {label: Link text, name: name, widget: string, required: false}
+#          - label: Icon pack
+#            name: icon_pack
+#            widget: select
+#            multiple: false
+#            required: false
+#            options:
+#              - {label: "None", value: ""}
+#              - {label: "Solid", value: "fas"}
+#              - {label: "Regular", value: "far"}
+#              - {label: "Brand", value: "fab"}
+#              - {label: "Academic", value: "ai"}
+#          - {label: "Icon (see https://wowchemy.com/docs/page-builder/#icons)", name: icon, widget: string, required: false}
+#      - label: "Featured Image"
+#        name: "image"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Upload an image named `featured.jpg/png`"
+#            name: "filename"
+#            widget: "image"
+#            default: "featured"
+#            required: false
+#            media_library:
+#              config:
+#                multiple: false
+#          - {label: Caption, name: caption, widget: string, required: false}
+#          - {label: Description for screen readers, name: alt_text, widget: string, required: false}
+#          - {label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart"}
+#          - {label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false}
+#  - name: events
+#    label: Events
+#    label_singular: Event
+#    folder: 'content/event'
+#    path: '{{slug}}/index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields:  # The fields each document in this collection have
+#      - {label: "Title", name: "title", widget: "string"}
+#      - {label: "Abstract", name: "abstract", widget: "text"}
+#      - {label: "Where", name: "location", widget: "text"}
+#      - {label: "From", name: "date", widget: "datetime"}
+#      - {label: "To", name: "date_end", widget: "datetime", default: ""}
+#      - {label: "All day event?", name: "all_day", widget: "boolean", default: false}
+#      - label: Links/Tickets
+#        name: links
+#        required: false
+#        widget: list
+#        fields:
+#          - {label: Link, name: url, widget: string}
+#          - {label: Link text, name: name, widget: string, required: false}
+#          - label: Icon pack
+#            name: icon_pack
+#            widget: select
+#            multiple: false
+#            required: false
+#            options:
+#              - {label: "None", value: ""}
+#              - {label: "Solid", value: "fas"}
+#              - {label: "Regular", value: "far"}
+#              - {label: "Brand", value: "fab"}
+#              - {label: "Academic", value: "ai"}
+#          - {label: "Icon (see https://wowchemy.com/docs/page-builder/#icons)", name: icon, widget: string, required: false}
+#      - {label: "Event", name: "event", widget: "string"}
+#      - {label: "Event link", name: "event_url", widget: "string"}
+#      - {label: "Publish this page on", name: "publishDate", widget: "datetime"}
+#      - {label: "Markdown slides (reference a deck in 'content/slides/')", name: "slides", widget: "string", required: false}
+#      - label: "Draft"
+#        name: "draft"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Featured"
+#        name: "featured"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Authors"
+#        name: "authors"
+#        required: false
+#        widget: "list"
+#      - label: "Tags"
+#        name: "tags"
+#        required: false
+#        widget: "list"
+#      - label: "Categories"
+#        name: "categories"
+#        required: false
+#        widget: "list"
+#      - label: "Projects (reference projects in 'content/project/')"
+#        name: "projects"
+#        required: false
+#        widget: "list"
+#      - label: "Featured Image"
+#        name: "image"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Upload an image named `featured.jpg/png`"
+#            name: "filename"
+#            widget: "image"
+#            default: "featured"
+#            required: false
+#            media_library:
+#              config:
+#                multiple: false
+#          - {label: Caption, name: caption, widget: string, required: false}
+#          - {label: Description for screen readers, name: alt_text, widget: string, required: false}
+#          - {label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart"}
+#          - {label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false}
+#      - {label: "Details", name: "body", widget: "markdown", required: false}
+#  - name: publications
+#    label: Publications
+#    label_singular: Publication
+#    folder: 'content/publication'
+#    path: '{{slug}}/index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields: # The fields each document in this collection have
+#      - { label: "Title", name: "title", widget: "string" }
+#      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+#      - label: "Publication type"
+#        name: "publication_types"
+#        required: true
+#        default: ["0"]
+#        widget: "select"
+#        # Can only have 1 pub. type assigned, but need `multiple` option to save as a Hugo taxonomy list.
+#        multiple: true
+#        options:
+#          - { label: "Uncategorized", value: "0" }
+#          - { label: "Conference paper", value: "1" }
+#          - { label: "Journal article", value: "2" }
+#          - { label: "Preprint / Working Paper", value: "3" }
+#          - { label: "Report", value: "4" }
+#          - { label: "Book", value: "5" }
+#          - { label: "Book section", value: "6" }
+#          - { label: "Thesis", value: "7" }
+#          - { label: "Patent", value: "8" }
+#      - label: "Authors"
+#        name: "authors"
+#        required: true
+#        widget: "list"
+#      - label: "Author Notes (contributions or affiliations for each author)"
+#        name: "author_notes"
+#        required: false
+#        widget: "list"
+#      - { label: "DOI", name: "doi", widget: "string", required: false }
+#      - { label: "Publication", name: "publication", widget: "string", required: false }
+#      - { label: "Publication (abbreviated)", name: "publication_short", widget: "string", required: false }
+#      - { label: "Abstract", name: "abstract", widget: "text", required: false }
+#      - label: "Draft"
+#        name: "draft"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Featured"
+#        name: "featured"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Tags"
+#        name: "tags"
+#        required: false
+#        widget: "list"
+#      - label: "Categories"
+#        name: "categories"
+#        required: false
+#        widget: "list"
+#      - label: "Projects"
+#        name: "projects"
+#        required: false
+#        widget: "list"
+#      - {label: "Markdown slides (reference a deck in 'content/slides/')", name: "slides", widget: "string", required: false}
+#      - label: "Featured Image"
+#        name: "image"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Upload an image named `featured.jpg/png`"
+#            name: "filename"
+#            widget: "image"
+#            default: "featured"
+#            required: false
+#            media_library:
+#              config:
+#                multiple: false
+#          - { label: Caption, name: caption, widget: string, required: false }
+#          - { label: Description for screen readers, name: alt_text, widget: string, required: false }
+#          - { label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart" }
+#          - { label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false }
+#      - { label: "Summary (shortened abstract)", name: "summary", widget: "text", required: false }
+#      - {label: "Details", name: "body", widget: "markdown", required: false}
+#      - { label: "Publish this page on", name: "date", widget: "datetime" }
+#  - name: slides
+#    label: Slides
+#    label_singular: Slides
+#    folder: 'content/slides'
+#    path: '{{slug}}/index'
+#    filter: {field: "cms_exclude"}
+#    create: true  # Allow users to create new documents in this collection
+#    fields:  # The fields each document in this collection have
+#      - {label: "Title", name: "title", widget: "string"}
+#      - {label: "Slides (separate with `---`)", name: "body", widget: "markdown"}
+#      - {label: "Publish on", name: "date", widget: "datetime"}
+#      - {label: "Summary", name: "summary", widget: "text", required: false}
+#      - label: "Draft"
+#        name: "draft"
+#        widget: "boolean"
+#        default: false
+#        required: false
+#      - label: "Tags"
+#        name: "tags"
+#        required: false
+#        widget: "list"
+#      - label: "Slide options"
+#        name: "slides"
+#        required: false
+#        widget: object
+#        fields:
+#          - { label: "Theme (see https://github.com/hakimel/reveal.js#theming)", name: theme, widget: string, required: false, default: black }
+#      - label: "Featured Image"
+#        name: "image"
+#        required: false
+#        widget: object
+#        fields:
+#          - label: "Upload an image named `featured.jpg/png`"
+#            name: "filename"
+#            widget: "image"
+#            default: "featured"
+#            required: false
+#            media_library:
+#              config:
+#                multiple: false
+#          - {label: Caption, name: caption, widget: string, required: false}
+#          - {label: Description for screen readers, name: alt_text, widget: string, required: false}
+#          - {label: "Where's the focal point in the image? Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.", name: focal_point, widget: string, required: false, default: "Smart"}
+#          - {label: 'Thumbnail Only?', name: preview_only, widget: boolean, default: false, required: false}
+
