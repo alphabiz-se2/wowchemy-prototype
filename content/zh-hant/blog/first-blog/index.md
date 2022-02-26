@@ -16,7 +16,7 @@ categories:
   - TestCategory
 proejcts: null
 image:
-  filename: pic1.png
+  filename: /assets/media/blog/first-blog/pic1.png
   caption: 資料設計
   alt_text: 資料設計圖片
   focal_point: Smart

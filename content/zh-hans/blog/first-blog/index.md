@@ -15,7 +15,7 @@ tags:
 categories:
   - TestCategory
 image:
-  filename: /assets/media/blog/first-blog/gif-2-14-2022-10-20-17-am.gif
+  filename: /assets/media/blog/first-blog/pic1.png
   caption: 材质设计
   alt_text: 材质设计图片
   focal_point: Smart
