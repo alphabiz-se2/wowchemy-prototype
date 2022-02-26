@@ -472,7 +472,7 @@ common:
         default:
         required: false
         media_folder: '/assets/media/{{dirname}}'
-        public_folder: '/assets/media/{{dirname}}'
+        public_folder: '/media/{{dirname}}'
 #        media_folder: '/assets/media'
 #        public_folder: '/assets/media'
         media_library:
@@ -527,7 +527,7 @@ common:
     filter: {field: "belong", value: "blog"}
     summary: '{{fields.slug}}'
     media_folder: '/assets/media/{{dirname}}'
-    public_folder: '/assets/media/{{dirname}}'
+    public_folder: '/media/{{dirname}}'
     i18n: true
     create: true
     delete: true
@@ -561,6 +561,9 @@ collections:
     path: 'home/{{slug}}'
     filter: {field: "belong", value: "home"}
 
+  - <<: *base-blog
+    <<: *base-blog-fields
+
   - <<: *base-widget
     <<: *base-widget-fields
     name: about
@@ -568,8 +571,22 @@ collections:
     path: 'about/{{slug}}'
     filter: {field: "belong", value: "about"}
 
-  - <<: *base-blog
-    <<: *base-blog-fields
+
+
+#  - <<: *base-post
+#    name: blog-en
+#    label: 博客(en)
+#    label_singular: 博文
+#    folder: 'content/en/blog'
+#
+#  - <<: *base-post
+#    name: blog-zh
+#    label: 博客(zh)
+#    label_singular: 博文
+#    folder: 'content/zh/blog'
+
+
+###################################################################
 
 #  - <<: *base-collection
 #    name: home-en
@@ -595,17 +612,6 @@ collections:
 #    label_singular: 组件
 #    folder: 'content/zh/about'
 
-  - <<: *base-post
-    name: blog-en
-    label: 博客(en)
-    label_singular: 博文
-    folder: 'content/en/blog'
-
-  - <<: *base-post
-    name: blog-zh
-    label: 博客(zh)
-    label_singular: 博文
-    folder: 'content/zh/blog'
 
 #  - name: pages
 #    label: "Pages"
