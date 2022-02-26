@@ -459,10 +459,10 @@ common:
         i18n: true
         default:
         required: false
-#        media_folder: '/assets/media/{{dirname}}'
-#        public_folder: '/media/{{dirname}}'
-        media_folder: '/assets/media'
-        public_folder: '/assets/media'
+        media_folder: '/assets/media/{{dirname}}'
+        public_folder: '/assets/media/{{dirname}}'
+#        media_folder: '/assets/media'
+#        public_folder: '/assets/media'
         media_library:
           config:
             multiple: false
