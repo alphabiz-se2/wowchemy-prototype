@@ -348,6 +348,12 @@ common:
   ###################################################################
   ##                          blog fields                          ##
   ###################################################################
+  ##    lastMod:datetime
+  ##    math:boolean
+  ##    diagram:boolean
+  ##    highlight:boolean
+  ##    image.placement:int
+  ###################################################################
 
   base-blog-date: &base-blog-date
     label: 发布时间
