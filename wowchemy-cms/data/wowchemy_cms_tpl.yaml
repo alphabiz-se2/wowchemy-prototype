@@ -62,6 +62,8 @@ common:
           - {label: '仅作为缩略图', name: preview_only, widget: boolean, default: false, required: false}
 
   ###################################################################
+  ##                        widget fields                          ##
+  ###################################################################
 
   base-widget-belong: &base-widget-belong
     label: "归属页面"
@@ -344,6 +346,123 @@ common:
         required: false
 
   ###################################################################
+  ##                          blog fields                          ##
+  ###################################################################
+
+  base-blog-date: &base-blog-date
+    label: 发布时间
+    name: date
+    widget: datetime
+    i18n: duplicate
+    required: true
+
+  base-blog-summary: &base-blog-summary
+    label: 概述
+    name: summary
+    widget: markdown
+    i18n: true
+    required: false
+
+  base-blog-draft: &base-blog-draft
+    label: 作为草稿
+    name: draft
+    widget: boolean
+    i18n: duplicate
+    default: false
+    required: false
+
+  base-blog-featured: &base-blog-featured
+    label: 作为特色
+    name: featured
+    widget: boolean
+    i18n: duplicate
+    default: false
+    required: false
+
+  base-blog-authors: &base-blog-authors
+    label: 作者
+    name: authors
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-tags: &base-blog-tags
+    label: 标签
+    name: tags
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-categories: &base-blog-categories
+    label: 分类
+    name: categories
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-projects: &base-blog-projects
+    label: 归属项目
+    name: proejcts
+    widget: list
+    i18n: true
+    required: false
+
+  base-blog-caption: &base-blog-caption
+    label: 封面标题
+    name: caption
+    widget: string
+    i18n: true
+    required: false
+    default: ""
+
+  base-blog-alt-text: &base-blog-alt-text
+    label: 封面描述文本
+    name: alt_text
+    widget: string
+    i18n: true
+    required: false
+    default: ""
+
+  base-blog-focal-point: &base-blog-focal-point
+    label: 设置封面焦点
+    name: focal_point
+    widget: select
+    options: [Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight]
+    i18n: duplicate
+    required: false
+    default: Smart
+
+  base-blog-preview-only: &base-blog-preview-only
+    label: 仅作为缩略图
+    name: preview_only
+    widget: boolean
+    i18n: duplicate
+    required: false
+    default: false
+
+  base-blog-image: &base-blog-image
+    label: "封面"
+    name: "image"
+    required: false
+    widget: object
+    i18n: true
+    fields:
+      - label: '上传一张名为 `featured.jpg/png` 的图片'
+        name: "filename"
+        widget: "image"
+        i18n: true
+        default: "featured"
+        required: false
+        media_library:
+          config:
+            multiple: false
+      - <<: *base-blog-caption
+      - <<: *base-blog-alt-text
+      - <<: *base-blog-focal-point
+      - <<: *base-blog-preview-only
+
+  ###################################################################
+  ###################################################################
 
   base-widget: &base-widget
     folder: 'content'
@@ -375,6 +494,38 @@ common:
       - <<: *base-widget-design
 
   ###################################################################
+
+  base-blog: &base-blog
+    label: 博客
+    name: blog
+    label_singular: 博文
+    folder: 'content'
+    slug: '{{fields.slug}}'
+    path: 'blog/{{slug}}/index'
+    filter: {field: "belong", value: "blog"}
+    summary: '{{fields.slug}}'
+    i18n: true
+    create: true
+    delete: true
+  base-blog-fields: &base-blog-fields
+    fields:
+      - <<: *base-widget-belong
+      - <<: *base-widget-slug
+      - <<: *base-widget-title
+      - <<: *base-widget-subtitle
+      - <<: *base-widget-body
+
+      - <<: *base-blog-date
+      - <<: *base-blog-summary
+      - <<: *base-blog-draft
+      - <<: *base-blog-featured
+      - <<: *base-blog-authors
+      - <<: *base-blog-tags
+      - <<: *base-blog-categories
+      - <<: *base-blog-projects
+
+      - <<: *base-blog-image
+
   ###################################################################
 
 
@@ -393,19 +544,8 @@ collections:
     path: 'about/{{slug}}'
     filter: {field: "belong", value: "about"}
 
-  - label: 博客
-    name: blog
-    label_singular: 博文
-    folder: 'content'
-    slug: '{{fields.slug}}'
-    path: 'blog/{{slug}}/index'
-    filter: {field: "belong", value: "blog"}
-    i18n: true
-    create: true
-    delete: true
-    fields:
-      - <<: *base-widget-belong
-      - <<: *base-widget-slug
+  - <<: *base-blog
+    <<: *base-blog-fields
 
 #  - <<: *base-collection
 #    name: home-en
