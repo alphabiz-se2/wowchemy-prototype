@@ -15,7 +15,7 @@ tags:
 categories:
   - TestCategory
 image:
-  filename: /assets/media/app_img_light.jpg
+  filename: /assets/media/blog/first-blog/gif-2-14-2022-10-20-17-am.gif
   caption: Material Design
   alt_text: Material Design Image
   focal_point: Smart
