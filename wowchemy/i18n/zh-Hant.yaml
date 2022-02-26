@@ -29,7 +29,7 @@
 - id: theme_light
   translation: 明亮
 - id: theme_dark
-  translation: 暗黑
+  translation: 黑暗
 - id: theme_auto
   translation: 自動
 - id: btn_preprint
