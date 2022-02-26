@@ -459,7 +459,7 @@ common:
         i18n: true
         default:
         required: false
-        media_folder: '/assets/{{dirname}}'
+        media_folder: '/assets/media/{{dirname}}'
         public_folder: '{{dirname}}'
         media_library:
           config:
