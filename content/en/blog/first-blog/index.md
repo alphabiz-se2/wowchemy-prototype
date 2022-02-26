@@ -15,7 +15,7 @@ tags:
 categories:
   - TestCategory
 image:
-  filename: blog/first-blog/pic1.png
+  filename: /assets/media/app_img_light.jpg
   caption: Material Design
   alt_text: Material Design Image
   focal_point: Smart
