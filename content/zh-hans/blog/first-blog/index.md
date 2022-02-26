@@ -15,7 +15,7 @@ tags:
 categories:
   - TestCategory
 image:
-  filename: pic1.png
+  filename: 1.png
   caption: 材质设计
   alt_text: 材质设计图片
   focal_point: Smart
