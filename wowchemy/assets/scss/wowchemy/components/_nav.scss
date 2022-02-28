@@ -31,6 +31,8 @@
   height: 70px;
   background: $sta-menu-primary;
   backdrop-filter: $sta-menu-blur;
+  -webkit-backdrop-filter: $sta-menu-blur;
+
   border-bottom: $sta-menu-border;
   //box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
   font-size: #{$sta-font-size-small}px;

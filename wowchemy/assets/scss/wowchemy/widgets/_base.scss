@@ -10,7 +10,7 @@
   // Use `background` rather than `background-color` so it can support gradients in theme packs.
   background: $sta-home-section-odd;
   position: relative; // Required for component positioning within section.
-  padding: 110px 0 110px 0;
+  padding: 56px 0 56px 0;
   z-index: 0; // Explicit z-order otherwise `.home-section-bg` can be hidden by any `.home-section` background.
 }
 
