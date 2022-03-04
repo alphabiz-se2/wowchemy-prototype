@@ -1,0 +1,29 @@
+# Theme metadata
+name = "chipchain"
+
+font = 'minimal'
+menu_blur = true
+menu_border = true
+menu_hover = true
+
+[light]
+# Primary
+primary = "#f0326b"
+# Menu
+menu_primary = "#1f2532d2"
+menu_text_active = "#f0326b"
+menu_text = "#efefef"
+menu_title = "#efefef"
+# Backgrounds
+background = "#ffffff"
+
+[dark]
+# Primary
+primary = "#f0326b"
+# Menu
+menu_primary = "#1f2532d2"
+menu_text_active = "#f0326b"
+menu_text = "#efefef"
+menu_title = "#efefef"
+# Backgrounds
+background = "#242424"

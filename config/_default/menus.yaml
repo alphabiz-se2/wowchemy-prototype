@@ -12,22 +12,6 @@ main:
     url: blog/
     weight: 20
 
-  - name: menu_item_download
-    url: 'https://github.com/tanshuai/alphabiz/releases'
-    weight: 50
-
-  - name: menu_item_docs
-    url: 'https://github.com/tanshuai/alphabiz/wiki'
-    weight: 60
-
-  - name: menu_item_support
-    url: 'https://github.com/tanshuai/alphabiz/issues'
-    weight: 70
-
-  - name: menu_item_community
-    url: 'https://github.com/tanshuai/alphabiz/discussions'
-    weight: 80
-
   - name: menu_item_about
     url: about/
     weight: 100
